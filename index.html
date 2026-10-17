@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Jogos curtos para crianças aprenderem a usar o computador: ficheiros e pastas, rato, teclado, palavras e atalhos.">
+<meta name="description" content="Jogos curtos para crianças aprenderem a usar o computador: ficheiros e pastas, rato, teclado, palavras, atalhos e jogos de pensar.">
 <title>Escola do Computador</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -312,6 +312,38 @@ section>.shead{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;mar
 .adgrid p,.adgrid li{color:var(--muted);font-size:15px}
 .adgrid ul{margin:6px 0 0;padding-left:18px}
 
+/* ===== jogos de pensar ===== */
+.pz{display:grid;gap:16px;justify-items:center;text-align:center;padding:22px 18px;margin-top:14px}
+.gstat{font-family:var(--fd);font-size:clamp(22px,4vw,28px);font-weight:700;min-height:1.3em;margin:0}
+.galo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:min(330px,100%);background:var(--line);padding:8px;border-radius:16px}
+.galo button{aspect-ratio:1;border:0;border-radius:10px;background:var(--surface);font-family:var(--fd);font-weight:800;font-size:clamp(44px,12vw,72px);line-height:1;display:grid;place-items:center;padding:0}
+.galo button:hover:not(:disabled){background:var(--surface2)}
+.galo button:disabled{cursor:default}
+.galo .x{color:var(--tomato)}.galo .o{color:var(--sky)}
+.galo .w{background:var(--leaf-s)}
+.sud{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));width:min(var(--w),100%);border:3px solid var(--ink);border-radius:8px;overflow:hidden;background:var(--surface)}
+.sud button{aspect-ratio:1;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface);font-family:var(--fd);font-weight:700;font-size:var(--fs);color:var(--sky);padding:0;line-height:1;display:grid;place-items:center;min-width:0}
+.sud .g{color:var(--ink);font-weight:800}
+.sud .br{border-right:3px solid var(--ink)}.sud .bb{border-bottom:3px solid var(--ink)}
+.sud .lc{border-right:0}.sud .lr{border-bottom:0}
+.sud .peer{background:var(--surface2)}
+.sud .same{background:var(--sky-s)}
+.sud .sel{background:var(--sun-s);box-shadow:inset 0 0 0 3px var(--sun)}
+.sud .bad{color:var(--tomato);background:var(--tomato-s)}
+.sud.won button{background:var(--leaf-s)}
+.pad{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.pad .cap{min-width:50px;height:52px;font-size:24px;border:1px solid var(--line)}
+.pad .cap.sm{font-size:15px;font-family:var(--fb);font-weight:600}
+.pzopts{display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:center;align-items:center}
+.pzopts label{display:flex;gap:6px;align-items:center;font-size:14.5px;color:var(--muted)}
+.memo{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:min(440px,100%)}
+.mc{aspect-ratio:1;border-radius:14px;border:1px solid var(--line);background:var(--plum);font-size:clamp(28px,8vw,44px);display:grid;place-items:center;padding:0;box-shadow:0 4px 0 var(--capside)}
+.mc span{visibility:hidden}
+.mc.up{background:var(--surface)}.mc.up span{visibility:visible}
+.mc.got{background:var(--leaf-s);border-color:var(--leaf);box-shadow:none}
+.mc:disabled{cursor:default}
+.c6 .band{background:var(--surface2)}
+
 /* pausa */
 .pause{position:fixed;inset:0;background:color-mix(in srgb,var(--bg) 92%,transparent);z-index:2000;display:grid;place-items:center;padding:20px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 .pause .panel{max-width:520px;display:grid;gap:14px;text-align:center;justify-items:center;padding:28px}
@@ -352,6 +384,7 @@ section>.shead{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;mar
     <button data-go="teclado">Teclado</button>
     <button data-go="palavras">Palavras</button>
     <button data-go="atalhos">Atalhos</button>
+    <button data-go="pensar">Jogos de pensar</button>
     <button data-go="adultos">Para os adultos</button>
   </nav>
 </header>
@@ -387,6 +420,9 @@ section>.shead{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;mar
     <button class="gcard c5" data-go="atalhos"><div class="band"><h3>Atalhos mágicos</h3><span class="num">5</span></div>
       <div class="body"><ul><li>Selecionar tudo, copiar e colar</li><li>Cortar e anular</li><li>Guardar com Ctrl + S</li></ul>
       <div class="meta"><span>6 passos · 5 min</span><span class="done" data-done="atalhos" hidden>Feito ✓</span></div></div></button>
+    <button class="gcard c6" data-go="pensar"><div class="band"><h3>Jogos de pensar</h3><span class="num">6</span></div>
+      <div class="body"><ul><li>Jogo do galo contra o computador ou a dois</li><li>Sudoku com números ou animais</li><li>Jogo da memória</li></ul>
+      <div class="meta"><span>3 jogos · 5 min cada</span><span class="done" data-done="pensar" hidden>Feito ✓</span></div></div></button>
   </div>
   <div class="note"><span class="cap" aria-hidden="true">i</span><p><b>Não há pontos para colecionar nem tempo a contar.</b> Cada jogo tem um fim. Ao fim de 20 minutos aparece um lembrete para fazer uma pausa. Os jogos de teclado precisam de um teclado de verdade.</p></div>
 </section>
@@ -525,6 +561,17 @@ section>.shead{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;mar
   </div>
 </section>
 
+<!-- ============ JOGOS DE PENSAR ============ -->
+<section id="pensar" hidden>
+  <div class="shead"><h2>Jogos de pensar</h2><p>Jogos para treinar a lógica, a atenção e a memória. Pensa antes de jogar!</p></div>
+  <div class="seg" id="pzSeg">
+    <button data-t="galo" aria-pressed="true">Jogo do galo</button>
+    <button data-t="sudoku" aria-pressed="false">Sudoku</button>
+    <button data-t="mem" aria-pressed="false">Memória</button>
+  </div>
+  <div class="panel pz" id="pzBox"></div>
+</section>
+
 <!-- ============ ADULTOS ============ -->
 <section id="adultos" hidden>
   <div class="shead"><h2>Para os adultos</h2><p>Estes jogos foram pensados para crianças dos 6 aos 11 anos, de preferência com um adulto por perto nas primeiras vezes.</p></div>
@@ -535,6 +582,7 @@ section>.shead{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;mar
       <li><b>Teclado:</b> a posição das teclas no teclado português e a técnica dos dez dedos.</li>
       <li><b>Palavras:</b> ortografia, acentos (til e agudo), maiúsculas e pontuação.</li>
       <li><b>Atalhos:</b> Ctrl+A, C, V, X, Z e S, que servem em quase todos os programas.</li>
+      <li><b>Jogos de pensar:</b> raciocínio lógico (sudoku), estratégia e antecipação (jogo do galo) e memória de trabalho (pares).</li>
     </ul></div>
     <div class="panel"><h3>Pensado para não viciar</h3><ul>
       <li>Sem pontuações, rankings, moedas ou séries diárias.</li>
@@ -596,7 +644,7 @@ const kindOf=n=>n.type==='folder'?'folder':(n.name.split('.').pop()||'').toLower
 const iconOf=n=>ICONS[kindOf(n)]||ICONS.txt;
 
 /* ---------- navegação ---------- */
-const SECTIONS=['home','pc','rato','teclado','palavras','atalhos','adultos'];
+const SECTIONS=['home','pc','rato','teclado','palavras','atalhos','pensar','adultos'];
 let current='home';
 function go(id){
   if(!SECTIONS.includes(id))id='home';
@@ -1222,9 +1270,164 @@ const AT=(()=>{
   return {key};
 })();
 
+/* =========================================================
+   6 · JOGOS DE PENSAR
+   ========================================================= */
+const PENSAR=(()=>{
+  const box=$('#pzBox');let tab='galo',played=new Set();
+  const note=k=>{played.add(k);if(played.size>=3)markDone('pensar')};
+  function set(t){tab=t;$$('#pzSeg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.t===t));({galo,sudoku,mem})[t]()}
+  $('#pzSeg').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b)set(b.dataset.t)});
+
+  /* ---- jogo do galo ---- */
+  const LINES=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  let G={mode:'facil',games:0};
+  const winner=b=>{for(const l of LINES){const[a,c,d]=l;if(b[a]&&b[a]===b[c]&&b[a]===b[d])return{p:b[a],l}}return b.every(Boolean)?{p:'='}:null};
+  function mm(b,me,depth){const w=winner(b);if(w)return w.p==='O'?10-depth:w.p==='X'?depth-10:0;
+    let best=me==='O'?-99:99;for(let i=0;i<9;i++)if(!b[i]){b[i]=me;const s=mm(b,me==='O'?'X':'O',depth+1);b[i]='';best=me==='O'?Math.max(best,s):Math.min(best,s)}return best}
+  const empties=b=>b.map((v,i)=>v?-1:i).filter(i=>i>=0);
+  const pick=a=>a[Math.random()*a.length|0];
+  const finishing=(b,p)=>empties(b).find(i=>{b[i]=p;const w=winner(b);b[i]='';return w&&w.p===p});
+  function compMove(){
+    const b=G.b;let i;
+    if(G.mode==='dificil'){let bs=-99,mv=[];for(const k of empties(b)){b[k]='O';const s=mm(b,'X',1);b[k]='';if(s>bs){bs=s;mv=[k]}else if(s===bs)mv.push(k)}i=pick(mv)}
+    else{i=finishing(b,'O');if(i==null&&Math.random()<.5)i=finishing(b,'X');if(i==null)i=pick(empties(b))}
+    play(i);
+  }
+  function galo(){
+    box.innerHTML=`<div class="seg" id="gMode">
+        <button data-m="facil">Contra o computador · fácil</button><button data-m="dificil">Contra o computador · difícil</button><button data-m="dois">Dois jogadores</button></div>
+      <p class="gstat" id="gStat"></p>
+      <div class="galo" id="gBoard">${Array.from({length:9},(_,i)=>`<button data-i="${i}" aria-label="Casa ${i+1}"></button>`).join('')}</div>
+      <p class="tip" id="gTip"></p>
+      <div class="mrow"><button class="btn" id="gNew">Jogar outra vez</button></div>`;
+    $('#gMode').onclick=e=>{const b=e.target.closest('[data-m]');if(b){G.mode=b.dataset.m;G.games=0;newGame()}};
+    $('#gBoard').onclick=e=>{const c=e.target.closest('[data-i]');if(!c)return;const i=+c.dataset.i;if(G.over||G.b[i]||(G.mode!=='dois'&&G.turn==='O'))return;play(i)};
+    $('#gNew').onclick=newGame;
+    newGame();
+  }
+  function newGame(){
+    G.b=Array(9).fill('');G.over=null;G.games++;
+    G.turn=G.games%2?'X':'O'; // quem começa vai alternando
+    renderG();
+    if(G.mode!=='dois'&&G.turn==='O')setTimeout(compMove,600);
+  }
+  function play(i){
+    G.b[i]=G.turn;const w=winner(G.b);
+    if(w){G.over=w;note('galo')}else G.turn=G.turn==='X'?'O':'X';
+    renderG();
+    if(!G.over&&G.mode!=='dois'&&G.turn==='O')setTimeout(compMove,500);
+  }
+  function renderG(){
+    $$('#gMode button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===G.mode));
+    const vs=G.mode!=='dois',w=G.over;
+    $$('#gBoard button').forEach((c,i)=>{const v=G.b[i];c.textContent=v;c.className=(v==='X'?'x':v==='O'?'o':'')+(w&&w.l&&w.l.includes(i)?' w':'');c.disabled=!!w||!!v;c.setAttribute('aria-label',`Casa ${i+1}${v?': '+v:''}`)});
+    let s,t;
+    if(!w){
+      s=vs?(G.turn==='X'?'A tua vez. És o <span style="color:var(--tomato)">X</span>':'O computador está a pensar…'):`Vez do <span style="color:${G.turn==='X'?'var(--tomato)':'var(--sky)'}">${G.turn}</span>`;
+      t='Faz uma linha de três: na horizontal, na vertical ou na diagonal. Dica: a casa do meio é a mais forte.';
+      if(vs&&G.turn==='X'&&G.b.every(v=>!v)===false){const threat=finishing(G.b,'O');if(threat!=null)t='Atenção! O computador quase tem uma linha. Consegues tapar-lhe o caminho?'}
+    }else if(w.p==='='){s='Empate! Ninguém fez linha.';t=G.mode==='dificil'?'Contra quem joga sem errar, o jogo do galo acaba sempre empatado. Empatar aqui é uma vitória!':'Quando ninguém se engana, o jogo do galo acaba empatado.'}
+    else if(vs){s=w.p==='X'?'Ganhaste! 🎉':'O computador ganhou.';t=w.p==='X'?'Boa estratégia! Explica a alguém lá de casa como fizeste.':'Olha para a linha verde: por onde ele passou? Para a próxima, tapa-lhe esse caminho.'}
+    else{s=`O <span style="color:${w.p==='X'?'var(--tomato)':'var(--sky)'}">${w.p}</span> ganhou!`;t='Agora troquem: quem perdeu começa a próxima.'}
+    $('#gStat').innerHTML=s;$('#gTip').textContent=t;
+  }
+
+  /* ---- sudoku ---- */
+  const SZ={4:{br:2,bc:2,rm:9,w:'300px',fs:'clamp(26px,9vw,38px)'},6:{br:2,bc:3,rm:20,w:'390px',fs:'clamp(20px,6.5vw,32px)'},9:{br:3,bc:3,rm:46,w:'470px',fs:'clamp(15px,4.6vw,26px)'}};
+  const ANIM=['🐱','🐶','🐸','🐰','🐻','🦊'];
+  let S={n:4,sym:'num',err:true};
+  const sym=v=>!v?'':S.sym==='ani'&&S.n<=6?ANIM[v-1]:String(v);
+  function canPut(g,n,cfg,i,v){const r=i/n|0,c=i%n;
+    for(let k=0;k<n;k++){if(g[r*n+k]===v&&r*n+k!==i)return false;if(g[k*n+c]===v&&k*n+c!==i)return false}
+    const r0=r-r%cfg.br,c0=c-c%cfg.bc;for(let a=0;a<cfg.br;a++)for(let b=0;b<cfg.bc;b++){const j=(r0+a)*n+c0+b;if(j!==i&&g[j]===v)return false}return true}
+  function fill(g,n,cfg){const i=g.indexOf(0);if(i<0)return true;for(const v of shuffle([...Array(n)].map((_,k)=>k+1)))if(canPut(g,n,cfg,i,v)){g[i]=v;if(fill(g,n,cfg))return true;g[i]=0}return false}
+  function count(g,n,cfg,lim){const i=g.indexOf(0);if(i<0)return 1;let t=0;for(let v=1;v<=n&&t<lim;v++)if(canPut(g,n,cfg,i,v)){g[i]=v;t+=count(g,n,cfg,lim-t);g[i]=0}return t}
+  function newSud(){
+    const n=S.n,cfg=SZ[n],sol=Array(n*n).fill(0);fill(sol,n,cfg);
+    const p=[...sol];let rm=0;
+    for(const i of shuffle([...p.keys()])){if(rm>=cfg.rm)break;const k=p[i];p[i]=0;if(count([...p],n,cfg,2)!==1)p[i]=k;else rm++}
+    Object.assign(S,{cfg,sol,cur:p,giv:p.map(Boolean),sel:p.indexOf(0),hints:n===9?5:3,won:false});
+    renderS();
+  }
+  const peers=i=>{const n=S.n,c=S.cfg,r=i/n|0,col=i%n;return j=>{const r2=j/n|0,c2=j%n;return r2===r||c2===col||((r2-r2%c.br)===(r-r%c.br)&&(c2-c2%c.bc)===(col-col%c.bc))}};
+  const isBad=i=>S.cur[i]&&!canPut(S.cur,S.n,S.cfg,i,S.cur[i]);
+  function sudoku(){
+    box.innerHTML=`<div class="pzopts"><div class="seg" id="sSize"><button data-n="4">4 × 4 · fácil</button><button data-n="6">6 × 6 · médio</button><button data-n="9">9 × 9 · desafio</button></div></div>
+      <div class="pzopts"><div class="seg" id="sSym"><button data-s="num">Números</button><button data-s="ani">Animais</button></div>
+      <label><input type="checkbox" id="sErr"> Mostrar repetidos a vermelho</label></div>
+      <p class="gstat" id="sStat"></p>
+      <div class="sud" id="sGrid"></div>
+      <div class="pad" id="sPad"></div>
+      <p class="tip" id="sTip"></p>
+      <div class="mrow"><button class="btn" id="sHint"></button><button class="btn ghost" id="sNew">Sudoku novo</button></div>`;
+    $('#sErr').checked=S.err;
+    $('#sSize').onclick=e=>{const b=e.target.closest('[data-n]');if(b){S.n=+b.dataset.n;newSud()}};
+    $('#sSym').onclick=e=>{const b=e.target.closest('[data-s]');if(b){S.sym=b.dataset.s;renderS()}};
+    $('#sErr').onchange=e=>{S.err=e.target.checked;renderS()};
+    $('#sGrid').onclick=e=>{const c=e.target.closest('[data-i]');if(c&&!S.won){S.sel=+c.dataset.i;renderS()}};
+    $('#sPad').onclick=e=>{const b=e.target.closest('[data-v]');if(b)put(+b.dataset.v)};
+    $('#sHint').onclick=hint;$('#sNew').onclick=newSud;
+    newSud();
+  }
+  function put(v){if(S.won||S.sel==null||S.sel<0||S.giv[S.sel])return;S.cur[S.sel]=v;checkWin();renderS()}
+  function hint(){
+    if(S.won||!S.hints)return;
+    let i=S.sel;if(i==null||i<0||S.giv[i]||S.cur[i]===S.sol[i]){const opts=S.cur.map((v,k)=>v!==S.sol[k]?k:-1).filter(k=>k>=0);if(!opts.length)return;i=opts[Math.random()*opts.length|0]}
+    S.cur[i]=S.sol[i];S.giv[i]=true;S.sel=i;S.hints--;checkWin();renderS();
+  }
+  function checkWin(){if(S.cur.every((v,i)=>v===S.sol[i])){S.won=true;note('sudoku')}}
+  function renderS(){
+    const n=S.n,c=S.cfg,g=$('#sGrid');if(!g)return;
+    $$('#sSize button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.n===n));
+    $$('#sSym button').forEach(b=>{b.setAttribute('aria-pressed',b.dataset.s===S.sym);b.disabled=n===9&&b.dataset.s==='ani'});
+    g.style.setProperty('--n',n);g.style.setProperty('--w',c.w);g.style.setProperty('--fs',c.fs);
+    g.classList.toggle('won',S.won);
+    const pe=S.sel>=0?peers(S.sel):()=>false,sv=S.sel>=0?S.cur[S.sel]:0;
+    g.innerHTML=S.cur.map((v,i)=>{const r=i/n|0,col=i%n;const cls=[S.giv[i]?'g':'',(col+1)%c.bc===0&&col<n-1?'br':'',(r+1)%c.br===0&&r<n-1?'bb':'',col===n-1?'lc':'',r===n-1?'lr':'',
+      i===S.sel?'sel':v&&v===sv?'same':pe(i)?'peer':'',S.err&&isBad(i)&&!S.giv[i]?'bad':''].join(' ');
+      return `<button data-i="${i}" class="${cls}" aria-label="Linha ${r+1}, coluna ${col+1}${v?': '+v:''}">${sym(v)}</button>`}).join('');
+    $('#sPad').innerHTML=[...Array(n)].map((_,k)=>`<button class="cap" data-v="${k+1}">${sym(k+1)}</button>`).join('')+`<button class="cap sm" data-v="0">Apagar</button>`;
+    $('#sHint').textContent=`Dar uma ajuda (${S.hints})`;$('#sHint').disabled=!S.hints||S.won;
+    const what=S.sym==='ani'&&n<=6?'animal':'número';
+    $('#sStat').textContent=S.won?'Sudoku resolvido! 🎉':'';
+    $('#sTip').innerHTML=S.won?'Usaste lógica pura: nenhum '+what+' se repete em nenhuma linha, coluna ou caixa. Que tal ensinar as regras a alguém?'
+      :`Cada linha, cada coluna e cada caixa de borda grossa tem de ter todos os ${what}s, sem repetir. Clica numa casa vazia e escolhe em baixo${n<=9?`, ou carrega nas teclas <kbd>1</kbd> a <kbd>${n}</kbd>`:''}.`;
+  }
+  function sudKey(e){
+    if(tab!=='sudoku'||S.won||e.ctrlKey||e.metaKey||e.altKey)return;
+    const n=S.n;
+    if(/^[1-9]$/.test(e.key)&&+e.key<=n){e.preventDefault();put(+e.key)}
+    else if(['Backspace','Delete','0'].includes(e.key)){e.preventDefault();put(0)}
+    else if(e.key.startsWith('Arrow')){e.preventDefault();let i=S.sel<0?0:S.sel,r=i/n|0,c=i%n;
+      if(e.key==='ArrowUp')r=(r+n-1)%n;if(e.key==='ArrowDown')r=(r+1)%n;if(e.key==='ArrowLeft')c=(c+n-1)%n;if(e.key==='ArrowRight')c=(c+1)%n;S.sel=r*n+c;renderS()}
+  }
+
+  /* ---- memória ---- */
+  const MEMO=['🐢','🚀','🍓','🎈','🦉','🌈','🐙','🌻'];
+  let M={};
+  function mem(){
+    M={cards:shuffle([...MEMO,...MEMO]),up:[],got:new Set(),tries:0,lock:false};
+    box.innerHTML=`<p class="gstat" id="mStat">Encontra os pares</p><div class="memo" id="mGrid">${M.cards.map((e,i)=>`<button class="mc" data-i="${i}" aria-label="Carta ${i+1}"><span>${e}</span></button>`).join('')}</div>
+      <p class="tip" id="mTip">Vira duas cartas de cada vez. Se forem iguais, ficam viradas. Se não, tenta lembrar-te onde estavam!</p>
+      <div class="mrow"><button class="btn ghost" id="mNew">Baralhar de novo</button></div>`;
+    $('#mNew').onclick=mem;
+    $('#mGrid').onclick=e=>{const c=e.target.closest('[data-i]');if(!c||M.lock)return;const i=+c.dataset.i;if(M.up.includes(i)||M.got.has(i))return;
+      M.up.push(i);c.classList.add('up');
+      if(M.up.length===2){M.tries++;const[a,b]=M.up;
+        if(M.cards[a]===M.cards[b]){M.got.add(a);M.got.add(b);[a,b].forEach(k=>{const el=$(`[data-i="${k}"]`,box);el.classList.add('got');el.disabled=true});M.up=[];
+          if(M.got.size===M.cards.length){$('#mStat').textContent='Encontraste todos os pares! 🎉';$('#mTip').textContent=`Precisaste de ${M.tries} tentativas. Quanto mais atenção prestas às cartas que já viste, menos tentativas precisas.`;note('mem')}
+          else $('#mStat').textContent=`${M.got.size/2} de ${MEMO.length} pares`}
+        else{M.lock=true;setTimeout(()=>{M.up.forEach(k=>$(`[data-i="${k}"]`,box).classList.remove('up'));M.up=[];M.lock=false},900)}}
+    };
+  }
+  set('galo');
+  return {key:sudKey};
+})();
+
 document.addEventListener('keydown',e=>{
   if(!$('#pause').hidden)return;
-  if(current==='teclado')KBD.key(e);else if(current==='pc')PC.key(e);else if(current==='atalhos')AT.key(e);
+  if(current==='teclado')KBD.key(e);else if(current==='pc')PC.key(e);else if(current==='atalhos')AT.key(e);else if(current==='pensar')PENSAR.key(e);
 });
 
 /* ---------- pausa ---------- */
