@@ -1,0 +1,1249 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Jogos curtos para crianças aprenderem a usar o computador: ficheiros e pastas, rato, teclado, palavras e atalhos.">
+<title>Escola do Computador</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Lexend:wght@400;500;600&display=swap">
+<style>
+/* Layout: caderno de sala de aula — cabeçalho com teclas, cartões de jogo em grelha, cada jogo num ecrã próprio */
+:root{
+  --bg:#e9f1f5; --surface:#ffffff; --surface2:#f2f7fa; --ink:#1b2740; --muted:#54627b; --line:#c9d6e2;
+  --tomato:#d9502f; --sun:#e9a51c; --leaf:#23906a; --sky:#2b66d0; --plum:#7a52c4;
+  --tomato-s:#fde2da; --sun-s:#fcefcc; --leaf-s:#d5f0e5; --sky-s:#dce7fb; --plum-s:#ebe2f8;
+  --desk1:#1d64a6; --desk2:#6bb2dc; --win:#ffffff; --winbar:#edf1f5; --sel:#cfe4ff; --selb:#6aa8ee; --task:#f4f6f9cc;
+  --cap:#fbfcfd; --capside:#c3cfdb; --capink:#24304a;
+  --fp:#f7cdc4; --fr:#fbe2a8; --fm:#c9ecd9; --fi:#cddcf8; --ft:#e4dcf6;
+  --fd:'Baloo 2','Trebuchet MS',system-ui,sans-serif;
+  --fb:'Lexend',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111a28; --surface:#19243a; --surface2:#1f2c45; --ink:#e8eef8; --muted:#a3b0c6; --line:#33435f;
+  --tomato:#ff7a59; --sun:#f6bd45; --leaf:#45c497; --sky:#6c9bff; --plum:#a885ec;
+  --tomato-s:#45251f; --sun-s:#3f331a; --leaf-s:#173a30; --sky-s:#1d2e52; --plum-s:#2e2547;
+  --desk1:#0f3359; --desk2:#2c6a98; --win:#1c273b; --winbar:#24314a; --sel:#284a78; --selb:#4f86d1; --task:#141d2ecc;
+  --cap:#2a3854; --capside:#121a29; --capink:#eef2fa;
+  --fp:#5b3330; --fr:#594a24; --fm:#244b3c; --fi:#283f69; --ft:#3c3360;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111a28; --surface:#19243a; --surface2:#1f2c45; --ink:#e8eef8; --muted:#a3b0c6; --line:#33435f;
+  --tomato:#ff7a59; --sun:#f6bd45; --leaf:#45c497; --sky:#6c9bff; --plum:#a885ec;
+  --tomato-s:#45251f; --sun-s:#3f331a; --leaf-s:#173a30; --sky-s:#1d2e52; --plum-s:#2e2547;
+  --desk1:#0f3359; --desk2:#2c6a98; --win:#1c273b; --winbar:#24314a; --sel:#284a78; --selb:#4f86d1; --task:#141d2ecc;
+  --cap:#2a3854; --capside:#121a29; --capink:#eef2fa;
+  --fp:#5b3330; --fr:#594a24; --fm:#244b3c; --fi:#283f69; --ft:#3c3360;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:16px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+h1,h2,h3{font-family:var(--fd);line-height:1.1;text-wrap:balance;margin:0}
+p{margin:0}
+
+/* cabeçalho */
+.top{padding-block:18px 10px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;background:none;border:0;padding:0}
+.brand .caps{display:flex;gap:4px}
+.cap{display:inline-grid;place-items:center;min-width:34px;height:36px;padding:0 8px;border-radius:8px;background:var(--cap);color:var(--capink);border:1px solid var(--line);box-shadow:0 4px 0 var(--capside);font-family:var(--fd);font-weight:800;font-size:20px;line-height:1}
+.brand b{font-family:var(--fd);font-size:22px;font-weight:800;letter-spacing:.2px}
+.nav{display:flex;flex-wrap:wrap;gap:6px}
+.nav button{border:1px solid transparent;background:none;border-radius:999px;padding:6px 14px;font-size:15px;color:var(--muted)}
+.nav button:hover{background:var(--surface)}
+.nav button[aria-current="page"]{background:var(--ink);color:var(--bg)}
+main{padding-block:10px 60px}
+section>.shead{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;margin-block:14px 18px}
+.shead h2{font-size:clamp(28px,4vw,40px)}
+.shead p{color:var(--muted);max-width:62ch}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* início */
+.hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:center;padding-block:26px 30px}
+.hero h1{font-size:clamp(36px,6vw,64px);font-weight:800;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;color:var(--sky)}
+.hero p{margin-top:14px;font-size:18px;color:var(--muted);max-width:52ch}
+.heroKeys{display:grid;gap:10px;justify-items:center}
+.heroKeys .row{display:flex;gap:8px}
+.heroKeys .cap{min-width:52px;height:54px;font-size:28px;box-shadow:0 6px 0 var(--capside);animation:bob 4s ease-in-out infinite}
+.heroKeys .cap.w{min-width:200px;font-size:18px}
+.heroKeys .row:nth-child(2) .cap{animation-delay:.4s}
+.heroKeys .row:nth-child(3) .cap{animation-delay:.8s}
+.heroKeys .t{background:var(--tomato-s)}.heroKeys .s{background:var(--sun-s)}.heroKeys .l{background:var(--leaf-s)}.heroKeys .k{background:var(--sky-s)}.heroKeys .p{background:var(--plum-s)}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.gcard{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:0;overflow:hidden;display:flex;flex-direction:column;transition:transform .15s}
+.gcard:hover{transform:translateY(-3px)}
+.gcard .band{padding:16px 18px 12px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.gcard .band h3{font-size:24px}
+.gcard .num{font-family:var(--fd);font-weight:800;font-size:15px;color:var(--muted)}
+.gcard .body{padding:0 18px 18px;display:grid;gap:10px}
+.gcard ul{margin:0;padding-left:18px;color:var(--muted);font-size:14.5px}
+.gcard .meta{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+.gcard .done{color:var(--leaf);font-weight:600}
+.c1 .band{background:var(--sky-s)}.c2 .band{background:var(--sun-s)}.c3 .band{background:var(--leaf-s)}.c4 .band{background:var(--tomato-s)}.c5 .band{background:var(--plum-s)}
+.note{margin-top:22px;background:var(--surface2);border-radius:var(--r);padding:16px 18px;color:var(--muted);font-size:15px;display:flex;gap:12px;align-items:flex-start}
+.note b{color:var(--ink)}
+
+/* botões */
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 14px;font-size:15px}
+.btn:hover{border-color:var(--muted)}
+.btn.pri{background:var(--sky);border-color:var(--sky);color:#fff}
+.btn.ghost{background:none}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:14.5px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+
+/* ===== simulador ===== */
+.pcgrid{display:grid;grid-template-columns:290px minmax(0,1fr);gap:18px;align-items:start}
+.mission{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;gap:12px;position:relative}
+.mission.celebrate{animation:pop .6s}
+@keyframes pop{0%{box-shadow:0 0 0 0 var(--leaf)}50%{box-shadow:0 0 0 8px transparent;transform:scale(1.02)}100%{transform:none}}
+.mission h3{font-size:24px}
+.mhint{background:var(--sun-s);border-radius:10px;padding:10px 12px;font-size:14.5px}
+.mrow{display:flex;gap:8px;flex-wrap:wrap}
+.mlist{margin:0;padding:0;list-style:none;display:grid;gap:4px;font-size:13.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px;counter-reset:m}
+.mlist li{display:flex;gap:8px;align-items:baseline;counter-increment:m}
+.mlist li::before{content:counter(m);font-family:var(--fd);font-weight:700;min-width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;font-size:12px;background:var(--surface2);color:var(--muted);flex:none}
+.mlist li.ok{color:var(--ink)}
+.mlist li.ok::before{content:"✓";background:var(--leaf);color:#fff}
+.mlist li.now{color:var(--ink);font-weight:600}
+.mlist li.now::before{background:var(--sky);color:#fff}
+.mdone{background:var(--leaf-s);border-radius:12px;padding:12px;font-size:15px}
+
+.desk{position:relative;height:560px;border-radius:16px;overflow:hidden;background:linear-gradient(160deg,var(--desk1),var(--desk2));user-select:none;-webkit-user-select:none;font-size:14px;touch-action:manipulation}
+.dicons{position:absolute;left:10px;top:10px;bottom:52px;display:flex;flex-direction:column;flex-wrap:wrap;gap:6px;align-content:flex-start}
+.dic{width:86px;padding:6px 4px;border-radius:6px;border:1px solid transparent;background:none;display:grid;justify-items:center;gap:3px;color:#fff;text-shadow:0 1px 2px #0009;font-size:12.5px;line-height:1.2;text-align:center}
+.dic svg{width:40px;height:40px}
+.dic.sel{background:#ffffff33;border-color:#ffffff66}
+.dic:hover{background:#ffffff1f}
+.taskbar{position:absolute;left:0;right:0;bottom:0;height:46px;background:var(--task);backdrop-filter:blur(8px);display:flex;align-items:center;gap:4px;padding:0 8px;border-top:1px solid var(--line);z-index:900}
+.tbtn{height:36px;border:0;background:none;border-radius:6px;padding:0 8px;display:flex;align-items:center;gap:6px;color:var(--ink);font-size:13px;max-width:170px;white-space:nowrap;overflow:hidden}
+.tbtn svg{width:22px;height:22px;flex:none}
+.tbtn:hover{background:var(--surface2)}
+.tbtn.on{background:var(--surface2);box-shadow:inset 0 -3px 0 var(--sky)}
+.startb{font-weight:600}
+.startb i{width:20px;height:20px;border-radius:6px;background:var(--sky);display:inline-grid;place-items:center;color:#fff;font-style:normal;font-size:12px}
+.clock{margin-left:auto;font-size:12.5px;text-align:right;line-height:1.2;color:var(--ink);font-variant-numeric:tabular-nums}
+.startm{position:absolute;left:8px;bottom:52px;width:240px;background:var(--win);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px #0005;padding:10px;z-index:950;color:var(--ink)}
+.startm p{font-size:12px;color:var(--muted);padding:4px 8px}
+.startm button{display:flex;gap:10px;align-items:center;width:100%;border:0;background:none;border-radius:8px;padding:8px;text-align:left}
+.startm button:hover{background:var(--surface2)}
+.startm svg{width:26px;height:26px}
+
+.win{position:absolute;background:var(--win);color:var(--ink);border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 40px #0006;display:flex;flex-direction:column;overflow:hidden}
+.tbar{height:36px;display:flex;align-items:center;gap:8px;padding-left:10px;background:var(--winbar);cursor:move;flex:none;touch-action:none}
+.tbar svg{width:18px;height:18px;flex:none}
+.tbar .tt{flex:1;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wb{width:44px;height:36px;border:0;background:none;font-size:15px}
+.wb:hover{background:var(--surface2)}
+.wb.x:hover{background:#d93a3a;color:#fff}
+#wEx{left:3%;top:4%;width:min(620px,94%);height:380px}
+#wNp{left:22%;top:12%;width:min(470px,92%);height:300px}
+#wIm{left:30%;top:8%;width:min(380px,90%);height:300px}
+.exbar{display:flex;gap:4px;align-items:center;padding:6px 8px;border-bottom:1px solid var(--line)}
+.exbar>button{width:32px;height:30px;border:0;border-radius:6px;background:none;font-size:17px}
+.exbar>button:hover:not(:disabled){background:var(--surface2)}
+.exbar>button:disabled{opacity:.35;cursor:default}
+.addr{flex:1;min-width:0;display:flex;align-items:center;gap:2px;border:1px solid var(--line);border-radius:6px;padding:2px 6px;height:30px;overflow-x:auto;white-space:nowrap;font-size:13px}
+.addr button{border:0;background:none;border-radius:4px;padding:2px 5px}
+.addr button:hover{background:var(--surface2)}
+.addr span{color:var(--muted)}
+.extools{display:flex;flex-wrap:wrap;gap:4px;padding:6px 8px;border-bottom:1px solid var(--line)}
+.extools button{border:0;background:none;border-radius:6px;padding:4px 10px;font-size:13px;display:flex;gap:6px;align-items:center}
+.extools button:hover:not(:disabled){background:var(--surface2)}
+.extools button:disabled{opacity:.4;cursor:default}
+.exbody{flex:1;display:flex;min-height:0}
+.exnav{width:150px;flex:none;border-right:1px solid var(--line);padding:6px;overflow-y:auto;display:flex;flex-direction:column;gap:1px}
+.exnav button{display:flex;gap:6px;align-items:center;border:0;background:none;border-radius:6px;padding:5px 6px;font-size:13px;text-align:left;white-space:nowrap}
+.exnav button svg{width:18px;height:18px;flex:none}
+.exnav button:hover{background:var(--surface2)}
+.exnav button.on{background:var(--sel)}
+.exnav .sub{padding-left:16px}
+.exlist{flex:1;min-width:0;overflow-y:auto;padding:8px;display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));align-content:start;gap:4px;outline:none}
+.it{display:grid;justify-items:center;gap:3px;padding:6px 4px;border-radius:6px;border:1px solid transparent;text-align:center;font-size:12.5px;line-height:1.2;word-break:break-word;cursor:default}
+.it svg{width:42px;height:42px}
+.it:hover{background:var(--surface2)}
+.it.sel{background:var(--sel);border-color:var(--selb)}
+.it.cut{opacity:.45}
+.it.drop,.exnav button.drop{background:var(--leaf-s);border-color:var(--leaf);outline:2px dashed var(--leaf)}
+.it input{width:100%;font:inherit;font-size:12.5px;text-align:center;border:1px solid var(--sky);border-radius:3px;padding:1px 2px;background:var(--win);color:var(--ink)}
+.empty{grid-column:1/-1;color:var(--muted);text-align:center;padding:30px 10px;font-size:13px}
+.exstat{font-size:12px;color:var(--muted);padding:3px 10px;border-top:1px solid var(--line)}
+.npmenu{display:flex;gap:2px;padding:2px 6px;border-bottom:1px solid var(--line);position:relative}
+.npmenu>button{border:0;background:none;border-radius:4px;padding:3px 10px;font-size:13px}
+.npmenu>button:hover,.npmenu>button[aria-expanded="true"]{background:var(--surface2)}
+.drop-m{position:absolute;left:6px;top:28px;background:var(--win);border:1px solid var(--line);border-radius:8px;box-shadow:0 10px 26px #0004;padding:4px;min-width:210px;z-index:5}
+.drop-m button,.ctx button{display:flex;justify-content:space-between;gap:20px;width:100%;border:0;background:none;padding:6px 10px;border-radius:5px;font-size:13px;text-align:left}
+.drop-m button:hover,.ctx button:hover:not(:disabled){background:var(--sel)}
+.drop-m kbd{color:var(--muted);font-family:inherit;font-size:12px}
+.ctx button:disabled{opacity:.4}
+.drop-m hr,.ctx hr{border:0;border-top:1px solid var(--line);margin:3px 4px}
+#npText{flex:1;resize:none;border:0;padding:10px;font-family:Consolas,'Courier New',monospace;font-size:15px;background:var(--win);color:var(--ink);outline:none;user-select:text;-webkit-user-select:text}
+.ctx{position:absolute;z-index:980;background:var(--win);color:var(--ink);border:1px solid var(--line);border-radius:8px;box-shadow:0 10px 26px #0005;padding:4px;min-width:190px}
+.modal{position:absolute;inset:0 0 46px 0;background:#0003;display:grid;place-items:center;z-index:960;padding:10px}
+.dlg{background:var(--win);color:var(--ink);border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 40px #0006;width:min(560px,100%);max-height:100%;display:flex;flex-direction:column;overflow:hidden}
+.dlg .tbar{cursor:default}
+.dlgbody{display:flex;height:220px;min-height:0}
+.dlgbody .col{flex:1;min-width:0;display:flex;flex-direction:column}
+.dlgbody .addr{margin:6px 8px 0;flex:none}
+.dlgfoot{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px;border-top:1px solid var(--line)}
+.dlgfoot label{font-size:13px}
+.dlgfoot input{flex:1;min-width:140px;font:inherit;font-size:14px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--win);color:var(--ink)}
+.dlgmsg{padding:10px;background:var(--sun-s);font-size:13.5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ask{padding:18px;display:grid;gap:14px;font-size:14.5px}
+.ask .mrow{justify-content:flex-end}
+.dtoast{position:absolute;left:50%;bottom:60px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:999px;font-size:13.5px;z-index:990;max-width:90%;text-align:center}
+.imgv{flex:1;display:grid;place-items:center;background:var(--surface2);padding:10px}
+.imgv svg{max-width:100%;max-height:100%;border-radius:6px}
+
+/* ===== rato ===== */
+.arena{position:relative;height:400px;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:14px;touch-action:none;user-select:none;-webkit-user-select:none}
+.ainfo{position:absolute;left:16px;top:12px;right:16px;display:flex;justify-content:space-between;gap:10px;font-size:15px;pointer-events:none;z-index:2}
+.ainfo b{font-family:var(--fd);font-size:20px}
+.target{position:absolute;border-radius:50%;border:0;background:radial-gradient(circle,var(--tomato) 0 30%,var(--surface) 31% 45%,var(--tomato) 46% 62%,var(--surface) 63% 75%,var(--tomato) 76%);transition:left .25s,top .25s,width .25s,height .25s}
+.gifts{position:absolute;inset:60px 16px 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gift{border:2px dashed var(--line);border-radius:16px;background:var(--surface2);display:grid;place-items:center;font-size:44px;font-family:var(--fd);position:relative}
+.gift .lid{width:70px;height:60px;border-radius:10px;background:var(--plum);position:relative;box-shadow:inset 0 -14px 0 #0002}
+.gift .lid::before{content:"";position:absolute;left:30px;top:0;bottom:0;width:10px;background:var(--sun)}
+.gift .lid::after{content:"";position:absolute;left:0;right:0;top:22px;height:10px;background:var(--sun)}
+.gift.open{border-style:solid;border-color:var(--leaf);background:var(--leaf-s)}
+.gift small{position:absolute;bottom:6px;font-size:13px;font-family:var(--fb);color:var(--muted)}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.files{position:absolute;left:16px;right:16px;top:56px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.dfile{display:grid;justify-items:center;gap:2px;padding:8px;border-radius:10px;background:var(--surface2);border:1px solid var(--line);width:96px;font-size:13px;cursor:grab;touch-action:none;position:relative;z-index:3}
+.dfile svg{width:36px;height:36px}
+.dfile.drag{cursor:grabbing;box-shadow:0 10px 20px #0003;z-index:20;pointer-events:none}
+.zones{position:absolute;left:16px;right:16px;bottom:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.zone{border:2px dashed var(--line);border-radius:14px;min-height:130px;padding:8px;display:grid;justify-items:center;align-content:start;gap:4px;font-size:14px;font-weight:600}
+.zone svg{width:44px;height:36px}
+.zone.hot{border-color:var(--leaf);background:var(--leaf-s)}
+.zone .got{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;font-weight:400;font-size:11.5px;color:var(--muted)}
+.zone .got span{background:var(--surface2);border-radius:4px;padding:1px 5px}
+.shapes{position:absolute;inset:70px 16px 16px;display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:20px}
+.shape{width:110px;height:110px;border:0;background:var(--line);transition:background .3s}
+.shape.circ{border-radius:50%}
+.shape.sq{border-radius:8px}
+.shape.tri{clip-path:polygon(50% 4%,98% 96%,2% 96%)}
+.amsg{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);background:var(--ink);color:var(--bg);border-radius:999px;padding:6px 14px;font-size:14px;z-index:30;max-width:92%;text-align:center}
+.donebox{position:absolute;inset:0;display:grid;place-items:center;background:var(--surface);z-index:40;padding:20px;text-align:center}
+.donebox>div{display:grid;gap:10px;justify-items:center;max-width:46ch}
+.donebox h3{font-size:34px;color:var(--leaf)}
+.donebox p{color:var(--muted)}
+
+/* ===== teclado ===== */
+.kbtools{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center}
+.stage{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:center;margin-block:16px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 20px;min-height:140px}
+.bigcap{min-width:96px;height:100px;font-size:54px;border-radius:16px;box-shadow:0 8px 0 var(--capside);padding:0 16px}
+.bigcap.sm{font-size:26px}
+.stage .q{font-size:20px;font-weight:500}
+.stage .sub{color:var(--muted);font-size:15px;margin-top:4px}
+.prog{display:flex;gap:5px;margin-top:10px;flex-wrap:wrap}
+.prog i{width:14px;height:14px;border-radius:50%;background:var(--surface2);border:1px solid var(--line)}
+.prog i.ok{background:var(--leaf);border-color:var(--leaf)}
+.prog i.now{border:2px solid var(--sky)}
+.kbwrap{overflow-x:auto;padding-bottom:10px}
+.kb{min-width:680px;display:grid;gap:6px;background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:12px}
+.krow{display:flex;gap:6px}
+.k{height:48px;border-radius:8px;border:1px solid var(--line);box-shadow:0 3px 0 var(--capside);display:grid;place-items:center;font-family:var(--fd);font-weight:700;font-size:17px;color:var(--capink);position:relative;transition:transform .08s,box-shadow .08s;min-width:0;padding:0 4px;white-space:nowrap;overflow:hidden}
+.k.sm{font-size:12px;font-family:var(--fb);font-weight:500}
+.k.f-p{background:var(--fp)}.k.f-r{background:var(--fr)}.k.f-m{background:var(--fm)}.k.f-i{background:var(--fi)}.k.f-t{background:var(--ft)}
+.kb.plain .k{background:var(--cap)}
+.k.bump::after{content:"";position:absolute;bottom:8px;width:12px;height:3px;border-radius:2px;background:var(--capink);opacity:.5}
+.k.hide .lbl{visibility:hidden}
+.k.down{transform:translateY(3px);box-shadow:0 0 0 var(--capside)}
+.k.tgt{outline:3px solid var(--sky);outline-offset:1px;animation:glow 1s ease-in-out infinite}
+@keyframes glow{50%{outline-color:transparent}}
+.k.good{background:var(--leaf)!important;color:#fff}
+.k.bad{background:var(--tomato)!important;color:#fff}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13.5px;color:var(--muted);margin-top:6px}
+.legend span{display:flex;gap:6px;align-items:center}
+.legend i{width:16px;height:16px;border-radius:4px;border:1px solid var(--line)}
+.hands{font-size:13px;color:var(--muted);margin-top:8px}
+
+/* ===== palavras ===== */
+.wgame{display:grid;gap:18px;justify-items:center;text-align:center;padding:26px 18px;min-height:360px;align-content:center;position:relative;overflow:hidden}
+.emo{font-size:84px;line-height:1}
+.word{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.word span{font-family:var(--fd);font-weight:800;font-size:clamp(28px,5vw,44px);min-width:1ch;padding:0 4px;border-bottom:4px solid var(--line);color:var(--muted);line-height:1.2}
+.word span.ok{color:var(--leaf);border-color:var(--leaf)}
+.word span.bad{color:var(--tomato);border-color:var(--tomato)}
+.word span.next{border-color:var(--sky)}
+.winput{font:inherit;font-family:var(--fd);font-size:28px;font-weight:700;text-align:center;width:min(420px,100%);padding:8px 14px;border:2px solid var(--line);border-radius:12px;background:var(--surface2);color:var(--ink)}
+.winput:focus{border-color:var(--sky);outline:none}
+.tiles{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.tiles .cap{min-width:52px;height:54px;font-size:26px;border:1px solid var(--line)}
+.tiles .cap:disabled{opacity:.25;cursor:default}
+.sent{font-size:clamp(20px,3.4vw,30px);font-weight:500;line-height:1.6;max-width:30ch}
+.sent span{border-radius:3px}
+.sent .ok{color:var(--leaf)}
+.sent .bad{background:var(--tomato-s);color:var(--tomato);text-decoration:underline}
+.sent .next{box-shadow:inset 0 -3px 0 var(--sky)}
+.sent .pend{color:var(--muted)}
+.tip{font-size:14.5px;color:var(--muted);max-width:52ch}
+.tip kbd,.steps kbd,.note kbd{display:inline-block;background:var(--cap);color:var(--capink);border:1px solid var(--line);box-shadow:0 2px 0 var(--capside);border-radius:5px;padding:0 6px;font-family:var(--fb);font-size:.88em;font-weight:600}
+
+/* ===== atalhos ===== */
+.atgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.steps li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start;padding:10px 12px;border-radius:12px;border:1px solid transparent}
+.steps li .n{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--surface2);font-family:var(--fd);font-weight:700}
+.steps li.now{background:var(--sky-s);border-color:var(--sky)}
+.steps li.ok .n{background:var(--leaf);color:#fff}
+.steps li.ok{color:var(--muted)}
+.steps li small{display:block;color:var(--muted);font-size:13.5px}
+.atbox{display:grid;gap:8px}
+.atbox label{font-weight:600;font-size:14px}
+.atbox textarea{font:inherit;font-size:16px;padding:10px;border:2px solid var(--line);border-radius:12px;background:var(--surface2);color:var(--ink);resize:vertical;min-height:90px}
+.atbox textarea:focus{border-color:var(--sky);outline:none}
+.flash{background:var(--leaf-s);color:var(--ink);border-radius:10px;padding:10px 12px;font-size:15px}
+
+/* ===== adultos ===== */
+.adgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.adgrid h3{font-size:21px;margin-bottom:6px}
+.adgrid p,.adgrid li{color:var(--muted);font-size:15px}
+.adgrid ul{margin:6px 0 0;padding-left:18px}
+
+/* pausa */
+.pause{position:fixed;inset:0;background:color-mix(in srgb,var(--bg) 92%,transparent);z-index:2000;display:grid;place-items:center;padding:20px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.pause .panel{max-width:520px;display:grid;gap:14px;text-align:center;justify-items:center;padding:28px}
+.pause h2{font-size:38px}
+.pause ul{text-align:left;color:var(--muted);margin:0;padding-left:20px;display:grid;gap:6px}
+
+@media (max-width:860px){
+  .pcgrid,.atgrid{grid-template-columns:minmax(0,1fr)}
+  .hero{grid-template-columns:minmax(0,1fr)}
+  .heroKeys{display:none}
+  .mlist{display:none}
+}
+@media (max-width:560px){
+  .desk{height:520px}
+  .exnav{width:110px}
+  .dicons{flex-direction:row;bottom:auto;right:10px}
+  .stage{grid-template-columns:minmax(0,1fr);justify-items:start}
+  .gifts{grid-template-columns:repeat(2,1fr)}
+  .zones{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:6px}
+  .dfile{width:84px}
+  .shape{width:80px;height:80px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <button class="brand" data-go="home" aria-label="Início">
+    <span class="caps"><span class="cap">E</span><span class="cap">C</span></span>
+    <b>Escola do Computador</b>
+  </button>
+  <nav class="nav" aria-label="Jogos">
+    <button data-go="home">Início</button>
+    <button data-go="pc">O meu computador</button>
+    <button data-go="rato">Rato</button>
+    <button data-go="teclado">Teclado</button>
+    <button data-go="palavras">Palavras</button>
+    <button data-go="atalhos">Atalhos</button>
+    <button data-go="adultos">Para os adultos</button>
+  </nav>
+</header>
+
+<main>
+<!-- ============ INÍCIO ============ -->
+<section id="home">
+  <div class="hero">
+    <div>
+      <span class="eyebrow">Jogos para aprender a mexer no computador</span>
+      <h1>Uma missão de cada vez, até o computador <em>fazer o que tu queres.</em></h1>
+      <p>Aprende a guardar ficheiros, a encontrar pastas, a usar o rato e a escrever sem procurar as teclas. Cada jogo é curto e acaba. Depois, vai brincar lá fora.</p>
+    </div>
+    <div class="heroKeys" aria-hidden="true">
+      <div class="row"><span class="cap t">O</span><span class="cap s">L</span><span class="cap l">Á</span></div>
+      <div class="row"><span class="cap k">F</span><span class="cap p">J</span></div>
+      <div class="row"><span class="cap w">Espaço</span></div>
+    </div>
+  </div>
+  <div class="cards">
+    <button class="gcard c1" data-go="pc"><div class="band"><h3>O meu computador</h3><span class="num">1</span></div>
+      <div class="body"><ul><li>Abrir o Explorador de Ficheiros</li><li>Criar, guardar e mudar o nome a ficheiros</li><li>Pastas, Reciclagem e arrastar</li></ul>
+      <div class="meta"><span>11 missões · 15 min</span><span class="done" data-done="pc" hidden>Feito ✓</span></div></div></button>
+    <button class="gcard c2" data-go="rato"><div class="band"><h3>Treino do rato</h3><span class="num">2</span></div>
+      <div class="body"><ul><li>Clique e duplo clique</li><li>Arrastar ficheiros para pastas</li><li>Botão direito e menus</li></ul>
+      <div class="meta"><span>4 níveis · 8 min</span><span class="done" data-done="rato" hidden>Feito ✓</span></div></div></button>
+    <button class="gcard c3" data-go="teclado"><div class="band"><h3>Teclado mágico</h3><span class="num">3</span></div>
+      <div class="body"><ul><li>Onde está cada letra</li><li>Que dedo usar em cada tecla</li><li>Enter, Shift, Apagar e companhia</li></ul>
+      <div class="meta"><span>12 rondas · 5 min</span><span class="done" data-done="teclado" hidden>Feito ✓</span></div></div></button>
+    <button class="gcard c4" data-go="palavras"><div class="band"><h3>Jogos de palavras</h3><span class="num">4</span></div>
+      <div class="body"><ul><li>Escrever o que vês</li><li>Letras baralhadas</li><li>Frases com maiúsculas e pontos</li></ul>
+      <div class="meta"><span>8 palavras · 5 min</span><span class="done" data-done="palavras" hidden>Feito ✓</span></div></div></button>
+    <button class="gcard c5" data-go="atalhos"><div class="band"><h3>Atalhos mágicos</h3><span class="num">5</span></div>
+      <div class="body"><ul><li>Selecionar tudo, copiar e colar</li><li>Cortar e anular</li><li>Guardar com Ctrl + S</li></ul>
+      <div class="meta"><span>6 passos · 5 min</span><span class="done" data-done="atalhos" hidden>Feito ✓</span></div></div></button>
+  </div>
+  <div class="note"><span class="cap" aria-hidden="true">i</span><p><b>Não há pontos para colecionar nem tempo a contar.</b> Cada jogo tem um fim. Ao fim de 20 minutos aparece um lembrete para fazer uma pausa. Os jogos de teclado precisam de um teclado de verdade.</p></div>
+</section>
+
+<!-- ============ PC ============ -->
+<section id="pc" hidden>
+  <div class="shead"><h2>O meu computador</h2><p>Um computador de faz-de-conta, parecido com o Windows. Segue as missões. Se te enganares, não faz mal: aqui nada se estraga.</p></div>
+  <div class="pcgrid">
+    <aside class="mission" id="mission">
+      <div><span class="eyebrow">Missão <b id="mNum">1</b> de <b id="mTot">11</b></span></div>
+      <h3 id="mTitle"></h3>
+      <p class="mhint" id="mHint" hidden></p>
+      <div class="mdone" id="mDone" hidden></div>
+      <div class="mrow"><button class="btn" id="mHelp">Preciso de ajuda</button><button class="btn ghost" id="mReset">Recomeçar</button></div>
+      <ol class="mlist" id="mList"></ol>
+    </aside>
+    <div class="desk" id="desk">
+      <div class="dicons" id="dIcons"></div>
+
+      <div class="win" id="wEx" hidden>
+        <div class="tbar"><span data-ico="explorer"></span><span class="tt" id="exTitle">Explorador de Ficheiros</span><button class="wb" data-act="min" title="Minimizar">–</button><button class="wb x" data-act="close" title="Fechar">✕</button></div>
+        <div class="exbar"><button id="exBack" title="Voltar atrás">←</button><button id="exUp" title="Subir uma pasta">↑</button><div class="addr" id="exAddr"></div></div>
+        <div class="extools" id="exTools"></div>
+        <div class="exbody"><nav class="exnav" id="exNav" aria-label="Pastas"></nav><div class="exlist" id="exList" tabindex="0"></div></div>
+        <div class="exstat" id="exStat"></div>
+      </div>
+
+      <div class="win" id="wNp" hidden>
+        <div class="tbar"><span data-ico="notepad"></span><span class="tt" id="npTitle">Sem título - Bloco de Notas</span><button class="wb" data-act="min" title="Minimizar">–</button><button class="wb x" data-act="close" title="Fechar">✕</button></div>
+        <div class="npmenu"><button id="npFile" aria-expanded="false">Ficheiro</button>
+          <div class="drop-m" id="npDrop" hidden>
+            <button data-np="new"><span>Novo</span></button>
+            <button data-np="open"><span>Abrir…</span></button>
+            <button data-np="save"><span>Guardar</span><kbd>Ctrl+S</kbd></button>
+            <button data-np="saveas"><span>Guardar como…</span></button>
+            <hr><button data-np="exit"><span>Sair</span></button>
+          </div>
+        </div>
+        <textarea id="npText" spellcheck="false" aria-label="Texto do Bloco de Notas"></textarea>
+      </div>
+
+      <div class="win" id="wIm" hidden>
+        <div class="tbar"><span data-ico="png"></span><span class="tt" id="imTitle">Fotografias</span><button class="wb x" data-act="close" title="Fechar">✕</button></div>
+        <div class="imgv" id="imView"></div>
+      </div>
+
+      <div class="modal" id="dlg" hidden><div class="dlg" role="dialog" aria-labelledby="dlgTitle">
+        <div class="tbar"><span class="tt" id="dlgTitle">Guardar como</span><button class="wb x" id="dlgX" title="Fechar">✕</button></div>
+        <div class="dlgbody"><nav class="exnav" id="dlgNav"></nav><div class="col"><div class="addr" id="dlgAddr"></div><div class="exlist" id="dlgList"></div></div></div>
+        <div class="dlgmsg" id="dlgMsg" hidden></div>
+        <div class="dlgfoot"><label for="dlgName">Nome do ficheiro:</label><input id="dlgName" autocomplete="off" spellcheck="false"><button class="btn pri" id="dlgOk">Guardar</button><button class="btn" id="dlgCancel">Cancelar</button></div>
+      </div></div>
+
+      <div class="modal" id="ask" hidden><div class="dlg" style="width:min(380px,100%)">
+        <div class="tbar"><span class="tt" id="askTitle">Bloco de Notas</span></div>
+        <div class="ask"><p id="askText"></p><div class="mrow" id="askBtns"></div></div>
+      </div></div>
+
+      <div class="ctx" id="ctx" hidden></div>
+      <div class="startm" id="startM" hidden>
+        <p>Aplicações</p>
+        <button data-start="ex"><span data-ico="explorer"></span>Explorador de Ficheiros</button>
+        <button data-start="np"><span data-ico="notepad"></span>Bloco de Notas</button>
+        <button data-start="rb"><span data-ico="recycle"></span>Reciclagem</button>
+      </div>
+      <div class="dtoast" id="dToast" hidden></div>
+      <div class="taskbar">
+        <button class="tbtn startb" id="startB"><i>●</i>Iniciar</button>
+        <div id="taskApps" style="display:flex;gap:4px;min-width:0"></div>
+        <div class="clock" id="clock"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RATO ============ -->
+<section id="rato" hidden>
+  <div class="shead"><h2>Treino do rato</h2><p>O rato tem dois botões. O esquerdo serve para quase tudo. O direito abre menus com mais opções.</p></div>
+  <div class="seg" id="ratoSeg">
+    <button data-lv="click" aria-pressed="true">1 · Clicar</button>
+    <button data-lv="dbl" aria-pressed="false">2 · Duplo clique</button>
+    <button data-lv="drag" aria-pressed="false">3 · Arrastar</button>
+    <button data-lv="right" aria-pressed="false">4 · Botão direito</button>
+  </div>
+  <div class="arena" id="arena"></div>
+</section>
+
+<!-- ============ TECLADO ============ -->
+<section id="teclado" hidden>
+  <div class="shead"><h2>Teclado mágico</h2><p>Cada dedo tem as suas teclas, marcadas pelas cores. Os indicadores descansam no <b>F</b> e no <b>J</b>, que têm um risquinho para os encontrares sem olhar.</p></div>
+  <div class="kbtools">
+    <div class="seg" id="kbMode">
+      <button data-m="ver" aria-pressed="true">Encontra a letra</button>
+      <button data-m="mem" aria-pressed="false">De memória</button>
+      <button data-m="esp" aria-pressed="false">Teclas especiais</button>
+      <button data-m="livre" aria-pressed="false">Explorar</button>
+    </div>
+    <div class="seg" id="kbSet">
+      <button data-s="meio" aria-pressed="true">Fila do meio</button>
+      <button data-s="cima" aria-pressed="false">Fila de cima</button>
+      <button data-s="baixo" aria-pressed="false">Fila de baixo</button>
+      <button data-s="letras" aria-pressed="false">Todas</button>
+      <button data-s="num" aria-pressed="false">Números</button>
+    </div>
+  </div>
+  <div class="stage" id="kbStage"></div>
+  <div class="kbwrap"><div class="kb" id="kb"></div></div>
+  <div class="legend"><span><i style="background:var(--fp)"></i>Mindinhos</span><span><i style="background:var(--fr)"></i>Anelares</span><span><i style="background:var(--fm)"></i>Médios</span><span><i style="background:var(--fi)"></i>Indicadores</span><span><i style="background:var(--ft)"></i>Polegares</span></div>
+</section>
+
+<!-- ============ PALAVRAS ============ -->
+<section id="palavras" hidden>
+  <div class="shead"><h2>Jogos de palavras</h2><p>Escrever no teclado é como escrever no caderno, mas as letras estão espalhadas. Vamos praticar.</p></div>
+  <div class="seg" id="wSeg">
+    <button data-w="ver" aria-pressed="true">Escreve o que vês</button>
+    <button data-w="desafio" aria-pressed="false">Palavras com acentos</button>
+    <button data-w="bar" aria-pressed="false">Letras baralhadas</button>
+    <button data-w="frase" aria-pressed="false">Frases</button>
+  </div>
+  <div class="panel wgame" id="wGame" style="margin-top:14px"></div>
+</section>
+
+<!-- ============ ATALHOS ============ -->
+<section id="atalhos" hidden>
+  <div class="shead"><h2>Atalhos mágicos</h2><p>Os atalhos são combinações de teclas. Carregas no <b>Ctrl</b>, manténs, e carregas noutra letra. Num Mac, usa a tecla <b>Cmd</b> em vez de Ctrl.</p></div>
+  <div class="atgrid">
+    <div class="panel"><ol class="steps" id="atSteps"></ol></div>
+    <div class="panel atbox">
+      <label for="atA">Caixa 1</label>
+      <textarea id="atA" spellcheck="false">Os computadores obedecem a atalhos. Copia-me!</textarea>
+      <label for="atB">Caixa 2</label>
+      <textarea id="atB" spellcheck="false" placeholder="Cola aqui o texto"></textarea>
+      <div class="flash" id="atFlash" hidden></div>
+      <div class="mrow"><button class="btn ghost" id="atReset">Recomeçar</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ADULTOS ============ -->
+<section id="adultos" hidden>
+  <div class="shead"><h2>Para os adultos</h2><p>Estes jogos foram pensados para crianças dos 6 aos 11 anos, de preferência com um adulto por perto nas primeiras vezes.</p></div>
+  <div class="adgrid">
+    <div class="panel"><h3>O que cada jogo ensina</h3><ul>
+      <li><b>O meu computador:</b> o modelo mental de pastas e ficheiros, guardar com nome e local, Guardar vs Guardar como, Reciclagem e restaurar.</li>
+      <li><b>Rato:</b> precisão, duplo clique, arrastar e soltar, menus de contexto. Também ensina tipos de ficheiro (.png, .mp3, .txt).</li>
+      <li><b>Teclado:</b> a posição das teclas no teclado português e a técnica dos dez dedos.</li>
+      <li><b>Palavras:</b> ortografia, acentos (til e agudo), maiúsculas e pontuação.</li>
+      <li><b>Atalhos:</b> Ctrl+A, C, V, X, Z e S, que servem em quase todos os programas.</li>
+    </ul></div>
+    <div class="panel"><h3>Pensado para não viciar</h3><ul>
+      <li>Sem pontuações, rankings, moedas ou séries diárias.</li>
+      <li>Cada atividade tem um número fixo de rondas e termina.</li>
+      <li>Nada é guardado entre visitas. Cada sessão começa de novo.</li>
+      <li>Lembrete de pausa com sugestões para descansar os olhos e o corpo.</li>
+    </ul>
+    <div style="margin-top:14px;display:grid;gap:8px"><span class="eyebrow">Lembrete de pausa</span>
+      <div class="seg" id="pauseSeg"><button data-p="15" aria-pressed="false">15 min</button><button data-p="20" aria-pressed="true">20 min</button><button data-p="30" aria-pressed="false">30 min</button><button data-p="0" aria-pressed="false">Desligado</button></div></div>
+    </div>
+    <div class="panel"><h3>Depois do jogo</h3><p>O passo mais importante é repetir no computador verdadeiro.</p><ul>
+      <li>Criem juntos uma pasta com o nome da criança em Documentos.</li>
+      <li>Abram o Bloco de Notas (procurar "Bloco de Notas" no menu Iniciar), escrevam uma frase e guardem lá dentro.</li>
+      <li>Fechem tudo e peçam à criança para encontrar o ficheiro sozinha.</li>
+      <li>No Windows, a tecla <kbd>Win</kbd> + <kbd>E</kbd> abre o Explorador de Ficheiros.</li>
+    </ul></div>
+  </div>
+</section>
+</main>
+</div>
+
+<div class="pause" id="pause" hidden>
+  <div class="panel">
+    <span class="cap" style="min-width:60px;height:60px;font-size:30px">⏸</span>
+    <h2>Hora de uma pausa</h2>
+    <p style="color:var(--muted)">Já estás ao computador há algum tempo. Os teus olhos e o teu corpo merecem descansar.</p>
+    <ul>
+      <li>Olha pela janela para uma coisa bem longe, enquanto contas até 20.</li>
+      <li>Levanta-te, estica os braços para o teto e roda os ombros.</li>
+      <li>Bebe um copo de água.</li>
+    </ul>
+    <button class="btn pri" id="pauseOk" disabled>Espera 30 segundos</button>
+  </div>
+</div>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const norm=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const doneSet=new Set();
+function markDone(k){doneSet.add(k);$$(`[data-done="${k}"]`).forEach(e=>e.hidden=false)}
+
+/* ---------- ícones ---------- */
+const PAGE=(inner)=>`<svg viewBox="0 0 40 48" aria-hidden="true"><path d="M5 2h21l11 11v31a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="#fff" stroke="#8d9bad" stroke-width="2"/><path d="M26 2v11h11" fill="#e4eaf1" stroke="#8d9bad" stroke-width="2" stroke-linejoin="round"/>${inner}</svg>`;
+const ICONS={
+  folder:`<svg viewBox="0 0 48 40" aria-hidden="true"><path d="M2 6a3 3 0 0 1 3-3h13l4 5h21a3 3 0 0 1 3 3v24a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3z" fill="#d9981a"/><path d="M2 13a2 2 0 0 1 2-2h40a2 2 0 0 1 2 2v22a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3z" fill="#f8c541"/></svg>`,
+  explorer:`<svg viewBox="0 0 48 40" aria-hidden="true"><path d="M2 6a3 3 0 0 1 3-3h13l4 5h21a3 3 0 0 1 3 3v24a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3z" fill="#d9981a"/><path d="M2 13a2 2 0 0 1 2-2h40a2 2 0 0 1 2 2v22a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3z" fill="#f8c541"/><rect x="14" y="20" width="20" height="5" rx="2" fill="#2b66d0"/></svg>`,
+  txt:PAGE(`<path d="M10 21h19M10 27h19M10 33h13" stroke="#69788b" stroke-width="2.5" stroke-linecap="round"/>`),
+  png:PAGE(`<rect x="9" y="18" width="23" height="20" rx="2" fill="#bfe1ff"/><path d="M9 38l8-10 6 6 4-4 5 8z" fill="#23906a"/><circle cx="26" cy="23" r="3" fill="#e9a51c"/>`),
+  mp3:PAGE(`<path d="M17 36V21l12-3v15" fill="none" stroke="#7a52c4" stroke-width="3"/><circle cx="14" cy="36" r="4" fill="#7a52c4"/><circle cx="26" cy="33" r="4" fill="#7a52c4"/>`),
+  recycle:`<svg viewBox="0 0 40 48" aria-hidden="true"><path d="M7 13h26l-3 31H10z" fill="#dce6f0" stroke="#71839a" stroke-width="2" stroke-linejoin="round"/><path d="M4 11h32M15 6h10" stroke="#71839a" stroke-width="3" stroke-linecap="round"/><path d="M15 19v19M20 19v19M25 19v19" stroke="#9aa9bb" stroke-width="2"/></svg>`,
+  recyclefull:`<svg viewBox="0 0 40 48" aria-hidden="true"><path d="M11 13l4-6 6 3 5-4 4 7z" fill="#fff" stroke="#8d9bad"/><path d="M7 13h26l-3 31H10z" fill="#dce6f0" stroke="#71839a" stroke-width="2" stroke-linejoin="round"/><path d="M4 12h32" stroke="#71839a" stroke-width="3" stroke-linecap="round"/><path d="M15 19v19M20 19v19M25 19v19" stroke="#9aa9bb" stroke-width="2"/></svg>`,
+  notepad:`<svg viewBox="0 0 40 48" aria-hidden="true"><rect x="4" y="6" width="32" height="40" rx="3" fill="#fff" stroke="#2b66d0" stroke-width="2"/><rect x="4" y="6" width="32" height="9" rx="3" fill="#2b66d0"/><path d="M10 23h20M10 29h20M10 35h13" stroke="#8d9bad" stroke-width="2.5" stroke-linecap="round"/></svg>`,
+  pc:`<svg viewBox="0 0 48 40" aria-hidden="true"><rect x="3" y="3" width="42" height="27" rx="3" fill="#2b66d0"/><rect x="6" y="6" width="36" height="21" rx="1" fill="#9fd0f5"/><path d="M18 30h12l2 6H16z" fill="#8d9bad"/><rect x="12" y="35" width="24" height="3" rx="1.5" fill="#71839a"/></svg>`
+};
+function fillIcons(root=document){$$('[data-ico]',root).forEach(e=>{e.innerHTML=ICONS[e.dataset.ico]||''})}
+const kindOf=n=>n.type==='folder'?'folder':(n.name.split('.').pop()||'').toLowerCase();
+const iconOf=n=>ICONS[kindOf(n)]||ICONS.txt;
+
+/* ---------- navegação ---------- */
+const SECTIONS=['home','pc','rato','teclado','palavras','atalhos','adultos'];
+let current='home';
+function go(id){
+  if(!SECTIONS.includes(id))id='home';
+  SECTIONS.forEach(s=>$('#'+s).hidden=s!==id);
+  $$('.nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.go===id?'page':'false'));
+  current=id; window.scrollTo(0,0);
+  try{history.replaceState(null,'','#'+id)}catch(e){}
+  if(id==='teclado')KBD.enter();
+  if(id==='palavras')WORDS.focus();
+}
+$$('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+
+function dbl(onSingle,onDouble,ms=450){let t=0,k=null;return (key,e)=>{const n=performance.now();if(key===k&&n-t<ms){t=0;k=null;onDouble(key,e)}else{t=n;k=key;onSingle&&onSingle(key,e)}}}
+
+/* =========================================================
+   1 · SIMULADOR
+   ========================================================= */
+const PC=(()=>{
+  const desk=$('#desk'); let uid=0, root, recycle, W, flags, mi, clip, z=10, toastT;
+  const node=(name,type,kids,content)=>{const n={id:++uid,name,type,kids:type==='folder'?(kids||[]):null,content:content||'',parent:null};if(n.kids)n.kids.forEach(k=>k.parent=n);return n};
+  const F=(n,k)=>node(n,'folder',k), T=(n,c)=>node(n,'file',null,c), B=n=>node(n,'file');
+  function build(){
+    uid=0;
+    root=F('Este PC',[
+      F('Ambiente de trabalho',[]),
+      F('Documentos',[
+        F('Animais',[T('gatos.txt','Os gatos dormem cerca de 15 horas por dia.\nTêm 32 músculos em cada orelha!'),T('cães.txt','O nariz de cada cão é único, como as nossas impressões digitais.')]),
+        T('Lista de compras.txt','Leite\nPão\nMaçãs\nCenouras'),
+        T('Receita do bolo.txt','Bolo de iogurte\n\n1 iogurte\n3 ovos\n2 copos de açúcar\n3 copos de farinha\n1 copo de óleo')
+      ]),
+      F('Imagens',[B('praia.png'),F('Férias',[B('montanha.png'),F('Segredos',[T('tesouro.txt','PARABÉNS!\n\nEncontraste o tesouro escondido.\nAgora sabes explorar pastas dentro de pastas.\nÉs um verdadeiro explorador de ficheiros!')])])]),
+      F('Música',[B('canção de embalar.mp3')]),
+      F('Transferências',[])
+    ]);
+    recycle=node('Reciclagem','folder',[]);
+  }
+  const desktopF=()=>root.kids[0], docs=()=>root.kids[1];
+  function* walk(n){yield n;if(n.kids)for(const k of n.kids)yield* walk(k)}
+  const byId=id=>{for(const r of [root,recycle])for(const n of walk(r))if(n.id===id)return n;return null};
+  const findUnder=(r,pred)=>{for(const n of walk(r))if(n!==r&&pred(n))return n;return null};
+  const inRec=n=>{while(n){if(n===recycle)return true;n=n.parent}return false};
+  const isUnder=(a,b)=>{while(b){if(a===b)return true;b=b.parent}return false}; // b dentro de a?
+  const pathOf=n=>{const a=[];while(n){a.unshift(n);n=n.parent}return a};
+  function uniq(folder,name,except){
+    const has=nm=>folder.kids.some(k=>k!==except&&norm(k.name)===norm(nm));
+    if(!has(name))return name;
+    const dot=name.lastIndexOf('.'), base=dot>0?name.slice(0,dot):name, ext=dot>0?name.slice(dot):'';
+    let i=2;while(has(`${base} (${i})${ext}`))i++;return `${base} (${i})${ext}`;
+  }
+  function toast(msg){const t=$('#dToast');t.textContent=msg;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>t.hidden=true,2600)}
+
+  /* --- missões --- */
+  const has=(f,nm)=>f&&f.kids&&f.kids.find(k=>norm(k.name)===norm(nm));
+  const missions=[
+    {t:'Abre o Explorador de Ficheiros',h:'Faz duplo clique (dois cliques rápidos, sem mexer o rato) no ícone da pasta amarela, no canto do ecrã.',ok:()=>W.ex.open&&!W.ex.min},
+    {t:'Entra na pasta Documentos',h:'Na coluna da esquerda da janela, clica uma vez em "Documentos". Também podes fazer duplo clique na pasta.',ok:()=>W.ex.cwd===docs()},
+    {t:'Abre o ficheiro "gatos" que está na pasta Animais',h:'Duplo clique na pasta Animais para entrar. Depois, duplo clique em gatos.txt. Vai abrir no Bloco de Notas.',ok:()=>flags['gatos.txt']},
+    {t:'Começa um documento novo e escreve o teu nome',h:'No Bloco de Notas, clica em "Ficheiro" e depois em "Novo". A folha fica em branco. Escreve o teu nome.',ok:()=>W.np.open&&!W.np.file&&W.np.text.trim().length>=2},
+    {t:'Guarda o documento em Documentos, com o nome "O meu nome"',h:'Clica em Ficheiro → Guardar como. À esquerda, escolhe Documentos. Escreve O meu nome na caixa "Nome do ficheiro" e carrega em Guardar. Atalho: Ctrl + S.',ok:()=>!!findUnder(docs(),n=>norm(n.name)==='o meu nome.txt')},
+    {t:'Cria uma pasta nova em Documentos, chamada "Escola"',h:'No Explorador, entra em Documentos e carrega em "Nova pasta". Escreve Escola e carrega na tecla Enter.',ok:()=>!!findUnder(docs(),n=>n.type==='folder'&&norm(n.name)==='escola')},
+    {t:'Põe o ficheiro "O meu nome" dentro da pasta Escola',h:'Carrega no ficheiro com o botão esquerdo, não largues, e arrasta-o para cima da pasta Escola. Outra forma: botão direito → Cortar, entra na pasta Escola, botão direito → Colar.',ok:()=>{const e=findUnder(docs(),n=>n.type==='folder'&&norm(n.name)==='escola');return !!has(e,'o meu nome.txt')}},
+    {t:'Muda o nome de "Receita do bolo" para "Bolo da avó"',h:'Em Documentos, clica UMA vez no ficheiro para o selecionar. Depois carrega em "Mudar o nome" (ou na tecla F2), escreve o nome novo e carrega em Enter.',ok:()=>!!findUnder(root,n=>norm(n.name)==='bolo da avo.txt')},
+    {t:'Elimina o ficheiro "Lista de compras"',h:'Seleciona-o com um clique e carrega em "Eliminar" (ou na tecla Delete). Não desaparece logo: vai para a Reciclagem.',ok:()=>!!has(recycle,'lista de compras.txt')||flags.restored},
+    {t:'Afinal precisas da lista! Vai à Reciclagem e restaura-a',h:'Duplo clique na Reciclagem, no ambiente de trabalho. Seleciona a Lista de compras e carrega em "Restaurar". Volta para o sítio de onde veio.',ok:()=>flags.restored&&!!findUnder(root,n=>norm(n.name)==='lista de compras.txt')},
+    {t:'Desafio final: encontra o ficheiro "tesouro" e abre-o',h:'Está escondido dentro de uma pasta, dentro de outra pasta, dentro de outra… Começa por procurar em Imagens.',ok:()=>flags['tesouro.txt']}
+  ];
+  let helpOpen=false;
+  function renderMission(){
+    $('#mTot').textContent=missions.length;
+    const done=mi>=missions.length;
+    $('#mNum').textContent=Math.min(mi+1,missions.length);
+    $('#mTitle').textContent=done?'Todas as missões feitas!':missions[mi].t;
+    $('#mHint').hidden=done||!helpOpen; if(!done)$('#mHint').textContent=missions[mi].h;
+    $('#mHelp').hidden=done;
+    $('#mDone').hidden=!done;
+    $('#mDone').innerHTML='Já sabes abrir pastas, guardar ficheiros, criar pastas, mudar nomes e usar a Reciclagem. <b>Agora experimenta no computador verdadeiro, com um adulto.</b> Podes continuar a explorar aqui à vontade.';
+    $('#mList').innerHTML=missions.map((m,i)=>`<li class="${i<mi?'ok':i===mi?'now':''}">${esc(m.t)}</li>`).join('');
+  }
+  function check(){
+    let adv=false;
+    while(mi<missions.length&&missions[mi].ok()){mi++;adv=true}
+    if(adv){helpOpen=false;const m=$('#mission');m.classList.remove('celebrate');void m.offsetWidth;m.classList.add('celebrate');toast(mi>=missions.length?'Conseguiste todas as missões!':'Missão cumprida!');if(mi>=missions.length)markDone('pc')}
+    renderMission();
+  }
+  $('#mHelp').onclick=()=>{helpOpen=!helpOpen;renderMission()};
+  $('#mReset').onclick=()=>reset();
+
+  /* --- janelas --- */
+  const wins={ex:$('#wEx'),np:$('#wNp'),im:$('#wIm')};
+  function front(el){el.style.zIndex=++z}
+  function show(k){W[k].open=true;W[k].min=false;wins[k].hidden=false;front(wins[k])}
+  Object.entries(wins).forEach(([k,el])=>{
+    el.addEventListener('pointerdown',()=>front(el));
+    el.querySelector('.tbar').addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;
+      if(b.dataset.act==='min'){W[k].min=true;toast('Minimizado. Está guardado na barra de tarefas, em baixo.')}
+      else closeWin(k);
+      render()});
+    const bar=el.querySelector('.tbar');
+    bar.addEventListener('pointerdown',e=>{
+      if(e.target.closest('button'))return;
+      const r=el.getBoundingClientRect(),d=desk.getBoundingClientRect(),ox=e.clientX-r.left,oy=e.clientY-r.top;
+      bar.setPointerCapture(e.pointerId);
+      const mv=ev=>{let x=ev.clientX-d.left-ox,y=ev.clientY-d.top-oy;x=Math.max(60-r.width,Math.min(d.width-60,x));y=Math.max(0,Math.min(d.height-90,y));el.style.left=x+'px';el.style.top=y+'px'};
+      const up=()=>{bar.removeEventListener('pointermove',mv);bar.removeEventListener('pointerup',up)};
+      bar.addEventListener('pointermove',mv);bar.addEventListener('pointerup',up);
+    });
+  });
+  function closeWin(k){
+    if(k==='np'&&W.np.dirty){askSave(()=>{W.np.open=false;W.np.dirty=false;render()});return}
+    W[k].open=false;
+  }
+
+  /* --- ambiente de trabalho --- */
+  const dIcons=$('#dIcons');
+  function renderDesk(){
+    const items=[{k:'ex',name:'Explorador de Ficheiros',ico:ICONS.explorer},{k:'np',name:'Bloco de Notas',ico:ICONS.notepad},{k:'rb',name:'Reciclagem',ico:recycle.kids.length?ICONS.recyclefull:ICONS.recycle}]
+      .concat(desktopF().kids.map(n=>({k:'n'+n.id,name:n.name,ico:iconOf(n)})));
+    dIcons.innerHTML=items.map(i=>`<button class="dic${W.dsel===i.k?' sel':''}" data-k="${i.k}">${i.ico}<span>${esc(i.name)}</span></button>`).join('');
+  }
+  const deskClick=dbl(k=>{W.dsel=k;renderDesk()},k=>{W.dsel=null;launch(k)});
+  dIcons.addEventListener('click',e=>{const b=e.target.closest('.dic');if(b)deskClick(b.dataset.k,e)});
+  dIcons.addEventListener('keydown',e=>{const b=e.target.closest('.dic');if(b&&e.key==='Enter'){e.preventDefault();launch(b.dataset.k)}});
+  desk.addEventListener('click',e=>{if(e.target===desk||e.target===dIcons){W.dsel=null;renderDesk();$('#startM').hidden=true}});
+  function launch(k){
+    if(k==='ex'){if(!W.ex.open){W.ex.cwd=root;W.ex.hist=[];W.ex.sel=null}show('ex')}
+    else if(k==='np'){show('np');setTimeout(()=>$('#npText').focus(),0)}
+    else if(k==='rb'){if(W.ex.cwd!==recycle){W.ex.hist.push(W.ex.cwd||root)}W.ex.cwd=recycle;W.ex.sel=null;show('ex')}
+    else if(k[0]==='n'){const n=byId(+k.slice(1));if(n)openNode(n)}
+    $('#startM').hidden=true;render();
+  }
+  $('#startB').onclick=e=>{e.stopPropagation();$('#startM').hidden=!$('#startM').hidden};
+  $('#startM').addEventListener('click',e=>{const b=e.target.closest('[data-start]');if(b)launch(b.dataset.start)});
+  function renderTask(){
+    const apps=[['ex',W.ex.cwd===recycle?'Reciclagem':'Explorador',ICONS.explorer],['np','Bloco de Notas',ICONS.notepad],['im','Fotografias',ICONS.png]];
+    $('#taskApps').innerHTML=apps.filter(a=>W[a[0]].open).map(a=>`<button class="tbtn${W[a[0]].min?'':' on'}" data-t="${a[0]}">${a[2]}<span>${a[1]}</span></button>`).join('');
+    Object.keys(wins).forEach(k=>wins[k].hidden=!W[k].open||W[k].min);
+  }
+  $('#taskApps').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;const k=b.dataset.t;if(W[k].min){W[k].min=false;front(wins[k])}else{W[k].min=true}render()});
+  function tick(){const d=new Date();$('#clock').innerHTML=`${d.toLocaleTimeString('pt-PT',{hour:'2-digit',minute:'2-digit'})}<br>${d.toLocaleDateString('pt-PT')}`}
+  tick();setInterval(tick,30000);
+
+  /* --- explorador --- */
+  const exList=$('#exList');
+  function navTo(f){if(f===W.ex.cwd)return;W.ex.hist.push(W.ex.cwd);W.ex.cwd=f;W.ex.sel=null;W.ex.ren=null;render()}
+  function navHTML(cur,attr){
+    const tops=root.kids.map(f=>`<button class="${cur===f?'on':''}" data-${attr}="${f.id}">${ICONS.folder}${esc(f.name)}</button>`).join('');
+    return `<button class="${cur===root?'on':''}" data-${attr}="${root.id}">${ICONS.pc}Este PC</button>${tops}`+(attr==='nav'?`<button class="${cur===recycle?'on':''}" data-${attr}="${recycle.id}">${recycle.kids.length?ICONS.recyclefull:ICONS.recycle}Reciclagem</button>`:'');
+  }
+  function addrHTML(cur,attr){
+    if(cur===recycle)return `<button data-${attr}="${recycle.id}">Reciclagem</button>`;
+    return pathOf(cur).map(n=>`<button data-${attr}="${n.id}">${esc(n.name)}</button>`).join('<span>›</span>');
+  }
+  function renderEx(){
+    const e=W.ex,cwd=e.cwd||root,rec=cwd===recycle,sel=e.sel&&byId(e.sel);
+    $('#exTitle').textContent=cwd.name;
+    $('#exBack').disabled=!e.hist.length;
+    $('#exUp').disabled=cwd===root||rec;
+    $('#exAddr').innerHTML=addrHTML(cwd,'nav');
+    $('#exNav').innerHTML=navHTML(cwd,'nav');
+    $('#exTools').innerHTML=rec
+      ?`<button data-tool="restore" ${sel?'':'disabled'}>↩ Restaurar</button><button data-tool="del" ${sel?'':'disabled'}>✕ Eliminar para sempre</button><button data-tool="empty" ${cwd.kids.length?'':'disabled'}>Esvaziar Reciclagem</button>`
+      :`<button data-tool="newf">＋ Nova pasta</button><button data-tool="ren" ${sel?'':'disabled'}>✎ Mudar o nome</button><button data-tool="cut" ${sel?'':'disabled'}>✂ Cortar</button><button data-tool="paste" ${clip?'':'disabled'}>📋 Colar</button><button data-tool="del" ${sel?'':'disabled'}>🗑 Eliminar</button>`;
+    const kids=[...cwd.kids].sort((a,b)=>(a.type===b.type?0:a.type==='folder'?-1:1)||a.name.localeCompare(b.name,'pt'));
+    exList.innerHTML=kids.length?kids.map(n=>{
+      const lbl=e.ren===n.id?`<input value="${esc(n.name)}" data-ren="${n.id}" aria-label="Novo nome">`:`<span>${esc(n.name)}</span>`;
+      return `<div class="it${e.sel===n.id?' sel':''}${clip===n?' cut':''}" data-id="${n.id}" draggable="${e.ren===n.id?'false':'true'}">${iconOf(n)}${lbl}</div>`}).join('')
+      :`<div class="empty">${rec?'A Reciclagem está vazia.':'Esta pasta está vazia.'}</div>`;
+    $('#exStat').textContent=`${kids.length} ${kids.length===1?'item':'itens'}`+(sel?` · 1 item selecionado`:'')+(rec?' · Os ficheiros eliminados ficam aqui até esvaziares a Reciclagem.':'');
+    const inp=exList.querySelector('input[data-ren]');
+    if(inp){inp.focus();const v=inp.value,d=v.lastIndexOf('.');inp.setSelectionRange(0,byId(+inp.dataset.ren).type==='file'&&d>0?d:v.length)}
+  }
+  $('#wEx').addEventListener('click',e=>{const b=e.target.closest('[data-nav]');if(b){const f=byId(+b.dataset.nav);if(f)navTo(f)}});
+  $('#exBack').onclick=()=>{if(W.ex.hist.length){W.ex.cwd=W.ex.hist.pop();W.ex.sel=null;render()}};
+  $('#exUp').onclick=()=>{if(W.ex.cwd.parent)navTo(W.ex.cwd.parent)};
+  $('#exTools').addEventListener('click',e=>{const b=e.target.closest('[data-tool]');if(!b||b.disabled)return;tool(b.dataset.tool)});
+  function tool(t){
+    const cwd=W.ex.cwd,sel=W.ex.sel&&byId(W.ex.sel);
+    if(t==='newf'||t==='newt'){const n=t==='newf'?F(uniq(cwd,'Nova pasta')):T(uniq(cwd,'Novo documento de texto.txt'),'');n.parent=cwd;cwd.kids.push(n);W.ex.sel=n.id;W.ex.ren=n.id;render()}
+    else if(t==='ren'&&sel){W.ex.ren=sel.id;render()}
+    else if(t==='cut'&&sel){clip=sel;toast('Cortado. Agora vai à pasta onde o queres pôr e carrega em Colar.');render()}
+    else if(t==='paste'&&clip){move(clip,cwd);clip=null;render()}
+    else if(t==='del'&&sel){
+      if(cwd===recycle)ask('Eliminar para sempre?',`"${sel.name}" vai desaparecer e não dá para recuperar.`,[['Eliminar',()=>{cwd.kids=cwd.kids.filter(k=>k!==sel);W.ex.sel=null;render()},true],['Cancelar',()=>{}]]);
+      else{sel.orig=sel.parent;move(sel,recycle,true);W.ex.sel=null;if(clip===sel)clip=null;toast('Foi para a Reciclagem.');render()}
+    }
+    else if(t==='restore'&&sel){let to=sel.orig&&!inRec(sel.orig)?sel.orig:docs();move(sel,to,true);if(norm(sel.name).startsWith('lista de compras'))flags.restored=true;W.ex.sel=null;toast(`Restaurado para ${to.name}.`);render()}
+    else if(t==='empty')ask('Esvaziar a Reciclagem?','Tudo o que está na Reciclagem vai desaparecer para sempre.',[['Esvaziar',()=>{recycle.kids=[];render()},true],['Cancelar',()=>{}]]);
+  }
+  function move(n,target,quiet){
+    if(n.parent===target)return;
+    if(n.type==='folder'&&isUnder(n,target)){toast('Uma pasta não pode ir para dentro de si própria.');return}
+    n.parent.kids=n.parent.kids.filter(k=>k!==n);
+    n.name=uniq(target,n.name);n.parent=target;target.kids.push(n);
+    if(!quiet)toast(`"${n.name}" foi para ${target.name}.`);
+  }
+  function commitRen(inp,cancel){
+    if(!inp||inp.dataset.done)return;inp.dataset.done=1;
+    const n=byId(+inp.dataset.ren);W.ex.ren=null;
+    let v=inp.value.trim().replace(/[\\/:*?"<>|]/g,'');
+    if(!cancel&&n&&v){
+      if(n.type==='file'&&!v.includes('.')){v+='.'+n.name.split('.').pop()}
+      if(n.parent.kids.some(k=>k!==n&&norm(k.name)===norm(v)))toast('Já existe um item com esse nome nesta pasta.');
+      else n.name=v;
+    }
+    render();setTimeout(()=>exList.focus(),0);
+  }
+  exList.addEventListener('keydown',e=>{
+    const inp=e.target.closest('input[data-ren]');
+    if(inp){if(e.key==='Enter'){e.preventDefault();commitRen(inp)}else if(e.key==='Escape'){commitRen(inp,true)}return}
+    const sel=W.ex.sel&&byId(W.ex.sel);
+    if(e.key==='F2'&&sel){e.preventDefault();tool(W.ex.cwd===recycle?'':'ren')}
+    else if(e.key==='Delete'&&sel){e.preventDefault();tool('del')}
+    else if(e.key==='Enter'&&sel){e.preventDefault();openNode(sel)}
+    else if(e.key==='Backspace'){e.preventDefault();$('#exBack').click()}
+  });
+  exList.addEventListener('focusout',e=>{const inp=e.target.closest&&e.target.closest('input[data-ren]');if(inp)commitRen(inp)});
+  const exClick=dbl(id=>{W.ex.sel=id;render();exList.focus()},id=>{const n=byId(id);if(n)openNode(n)});
+  exList.addEventListener('click',e=>{
+    if(e.target.closest('input'))return;
+    const it=e.target.closest('.it');
+    if(!it){if(W.ex.sel){W.ex.sel=null;render()}return}
+    exClick(+it.dataset.id,e);
+  });
+  exList.addEventListener('contextmenu',e=>{
+    e.preventDefault();const it=e.target.closest('.it'),rec=W.ex.cwd===recycle;
+    if(it){W.ex.sel=+it.dataset.id;render();const n=byId(W.ex.sel);
+      ctx(e,rec?[['Restaurar',()=>tool('restore')],['Eliminar para sempre',()=>tool('del')]]
+        :[['Abrir',()=>openNode(n)],'-',['Cortar',()=>tool('cut')],['Mudar o nome',()=>tool('ren')],['Eliminar',()=>tool('del')]]);
+    }else ctx(e,rec?[['Esvaziar Reciclagem',()=>tool('empty'),!recycle.kids.length]]
+        :[['Nova pasta',()=>tool('newf')],['Novo documento de texto',()=>tool('newt')],'-',['Colar',()=>tool('paste'),!clip]]);
+  });
+  /* arrastar e largar */
+  let dragN=null;
+  const dropTarget=e=>{const el=e.target.closest('.it[data-id],[data-nav]');if(!el||!dragN)return null;const f=byId(+(el.dataset.id||el.dataset.nav));if(!f||f.type!=='folder'||f===dragN||f===dragN.parent)return null;if(dragN.type==='folder'&&isUnder(dragN,f))return null;return {el,f}};
+  $('#wEx').addEventListener('dragstart',e=>{const it=e.target.closest('.it');if(!it)return;dragN=byId(+it.dataset.id);W.ex.sel=dragN.id;it.classList.add('sel');e.dataTransfer.effectAllowed='move';try{e.dataTransfer.setData('text/plain',dragN.name)}catch(_){}});
+  $('#wEx').addEventListener('dragover',e=>{const t=dropTarget(e);$$('.drop',wins.ex).forEach(x=>x!==(t&&t.el)&&x.classList.remove('drop'));if(t){e.preventDefault();e.dataTransfer.dropEffect='move';t.el.classList.add('drop')}});
+  $('#wEx').addEventListener('drop',e=>{const t=dropTarget(e);if(t){e.preventDefault();if(t.f===recycle){dragN.orig=dragN.parent;move(dragN,recycle,true);toast('Foi para a Reciclagem.')}else move(dragN,t.f);dragN=null;render()}});
+  $('#wEx').addEventListener('dragend',()=>{dragN=null;$$('.drop').forEach(x=>x.classList.remove('drop'))});
+
+  function openNode(n){
+    if(inRec(n)&&n!==recycle){toast('Para abrir, primeiro restaura o ficheiro.');return}
+    if(n.type==='folder'){if(!W.ex.open||W.ex.min){W.ex.hist=[]; W.ex.cwd=n; show('ex'); render()} else navTo(n);return}
+    const k=kindOf(n);
+    if(k==='txt')loadNp(n);
+    else if(k==='png'){W.im.file=n;$('#imTitle').textContent=n.name+' - Fotografias';$('#imView').innerHTML=scene(n.name);show('im');render()}
+    else if(k==='mp3')toast('♪ Isto é um ficheiro de música. Num computador verdadeiro, abria um leitor de música.');
+    else toast('Este tipo de ficheiro não abre no Bloco de Notas.');
+  }
+  function scene(name){
+    const sea=/praia/.test(name);
+    return sea?`<svg viewBox="0 0 300 200"><rect width="300" height="200" fill="#9fd6f7"/><circle cx="230" cy="50" r="24" fill="#f6c343"/><rect y="110" width="300" height="50" fill="#2f86c9"/><path d="M0 120q25-8 50 0t50 0 50 0 50 0 50 0 50 0" stroke="#fff" stroke-width="3" fill="none" opacity=".6"/><rect y="150" width="300" height="50" fill="#f3d79a"/><path d="M60 150l6-40 4 40" fill="#8a5a2b"/><path d="M66 110q-30-6-34 8M66 110q28-8 36 6M66 110q-10-20-26-18" stroke="#23906a" stroke-width="6" fill="none" stroke-linecap="round"/></svg>`
+      :`<svg viewBox="0 0 300 200"><rect width="300" height="200" fill="#cfe9fb"/><circle cx="70" cy="45" r="18" fill="#f6c343"/><path d="M0 170l70-90 50 60 50-80 130 110z" fill="#5f7d95"/><path d="M150 80l20-20 20 30-14-6-8 10-10-6z" fill="#fff"/><path d="M0 200v-40l60-20 80 15 70-25 90 25v45z" fill="#23906a"/></svg>`;
+  }
+
+  /* --- bloco de notas --- */
+  const npText=$('#npText');
+  function npTitle(){$('#npTitle').textContent=`${W.np.dirty?'*':''}${W.np.file?W.np.file.name:'Sem título'} - Bloco de Notas`}
+  npText.addEventListener('input',()=>{W.np.text=npText.value;W.np.dirty=true;npTitle();check()});
+  function loadNp(file){
+    const go2=()=>{W.np.file=file;W.np.text=file?file.content:'';npText.value=W.np.text;W.np.dirty=false;if(file)flags[norm(file.name)]=true;show('np');render();setTimeout(()=>npText.focus(),0)};
+    if(W.np.dirty&&W.np.file!==file)askSave(go2);else go2();
+  }
+  function save(after){
+    if(W.np.file){W.np.file.content=W.np.text;W.np.dirty=false;toast(`Guardado em ${W.np.file.parent.name}.`);render();after&&after()}
+    else openDlg('save',after);
+  }
+  const npDrop=$('#npDrop');
+  $('#npFile').onclick=e=>{e.stopPropagation();npDrop.hidden=!npDrop.hidden;$('#npFile').setAttribute('aria-expanded',!npDrop.hidden)};
+  document.addEventListener('pointerdown',e=>{if(!e.target.closest('.npmenu')){npDrop.hidden=true;$('#npFile').setAttribute('aria-expanded','false')}if(!e.target.closest('#ctx'))$('#ctx').hidden=true;if(!e.target.closest('#startM,#startB'))$('#startM').hidden=true});
+  npDrop.addEventListener('click',e=>{const b=e.target.closest('[data-np]');if(!b)return;npDrop.hidden=true;const a=b.dataset.np;
+    if(a==='new')loadNp(null);else if(a==='open')openDlg('open');else if(a==='save')save();else if(a==='saveas')openDlg('save');else closeWin('np'),render()});
+  function askSave(then){
+    ask('Bloco de Notas',`Queres guardar as alterações a "${W.np.file?W.np.file.name:'Sem título'}"?`,[['Guardar',()=>save(then),true],['Não guardar',()=>{W.np.dirty=false;then()}],['Cancelar',()=>{}]]);
+  }
+
+  /* --- diálogos --- */
+  function ask(title,text,btns){
+    $('#askTitle').textContent=title;$('#askText').textContent=text;
+    $('#askBtns').innerHTML=btns.map((b,i)=>`<button class="btn${b[2]?' pri':''}" data-i="${i}">${esc(b[0])}</button>`).join('');
+    $('#ask').hidden=false;
+    $('#askBtns').onclick=e=>{const b=e.target.closest('[data-i]');if(!b)return;$('#ask').hidden=true;btns[b.dataset.i][1]();};
+    setTimeout(()=>$('#askBtns button').focus(),0);
+  }
+  let D=null;
+  function openDlg(mode,after){
+    D={mode,cwd:W.np.file?W.np.file.parent:docs(),sel:null,after};
+    if(inRec(D.cwd))D.cwd=docs();
+    $('#dlgTitle').textContent=mode==='save'?'Guardar como':'Abrir';
+    $('#dlgOk').textContent=mode==='save'?'Guardar':'Abrir';
+    $('#dlgName').value=mode==='save'?(W.np.file?W.np.file.name:'Sem título.txt'):'';
+    $('#dlgMsg').hidden=true;$('#dlg').hidden=false;renderDlg();
+    setTimeout(()=>{const i=$('#dlgName');i.focus();const v=i.value,d=v.lastIndexOf('.');i.setSelectionRange(0,d>0?d:v.length)},0);
+  }
+  function renderDlg(){
+    $('#dlgNav').innerHTML=navHTML(D.cwd,'dn');
+    $('#dlgAddr').innerHTML=addrHTML(D.cwd,'dn');
+    const kids=[...D.cwd.kids].sort((a,b)=>(a.type===b.type?0:a.type==='folder'?-1:1)||a.name.localeCompare(b.name,'pt'));
+    $('#dlgList').innerHTML=kids.length?kids.map(n=>`<div class="it${D.sel===n.id?' sel':''}" data-di="${n.id}" style="${n.type==='file'&&kindOf(n)!=='txt'?'opacity:.4':''}">${iconOf(n)}<span>${esc(n.name)}</span></div>`).join(''):'<div class="empty">Pasta vazia</div>';
+  }
+  $('#dlg').addEventListener('click',e=>{const b=e.target.closest('[data-dn]');if(b){D.cwd=byId(+b.dataset.dn);D.sel=null;renderDlg()}});
+  const dlgClick=dbl(id=>{const n=byId(id);if(n.type==='file'&&kindOf(n)==='txt'){D.sel=id;$('#dlgName').value=n.name}renderDlg()},id=>{const n=byId(id);if(n.type==='folder'){D.cwd=n;D.sel=null;renderDlg()}else if(kindOf(n)==='txt'){$('#dlgName').value=n.name;dlgOk()}});
+  $('#dlgList').addEventListener('click',e=>{const it=e.target.closest('[data-di]');if(it)dlgClick(+it.dataset.di,e)});
+  const closeDlg=()=>{$('#dlg').hidden=true;D=null};
+  $('#dlgX').onclick=closeDlg;$('#dlgCancel').onclick=closeDlg;
+  $('#dlgName').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();dlgOk()}else if(e.key==='Escape')closeDlg()});
+  $('#dlgOk').onclick=()=>dlgOk();
+  function dlgMsg(html,btns){const m=$('#dlgMsg');m.innerHTML=html;m.hidden=false;if(btns){btns.forEach(([l,f,p])=>{const b=document.createElement('button');b.className='btn'+(p?' pri':'');b.textContent=l;b.onclick=f;m.appendChild(b)})}}
+  function dlgOk(force){
+    let v=$('#dlgName').value.trim().replace(/[\\/:*?"<>|]/g,'');
+    if(!v){dlgMsg('Escreve um nome para o ficheiro primeiro.');return}
+    if(!/\.[a-z0-9]+$/i.test(v))v+='.txt';
+    const ex=D.cwd.kids.find(k=>norm(k.name)===norm(v));
+    if(D.mode==='open'){if(!ex||ex.type!=='file'){dlgMsg(`Não encontrei "${esc(v)}" nesta pasta.`);return}const a=D.after;closeDlg();W.np.dirty=false;loadNp(ex);a&&a();return}
+    if(ex&&ex.type==='folder'){dlgMsg('Já existe uma pasta com esse nome. Escolhe outro.');return}
+    if(ex&&!force){dlgMsg(`Já existe "${esc(ex.name)}". Queres substituí-lo?`,[['Substituir',()=>dlgOk(true),true],['Não',()=>$('#dlgMsg').hidden=true]]);return}
+    let f=ex; if(!f){f=T(v,'');f.parent=D.cwd;D.cwd.kids.push(f)}
+    f.content=W.np.text;W.np.file=f;W.np.dirty=false;
+    const a=D.after;closeDlg();toast(`Guardado: ${f.name}, na pasta ${f.parent.name}.`);
+    if(W.ex.cwd!==f.parent){/* mantém */}
+    render();a&&a();
+  }
+
+  /* --- menu de contexto --- */
+  function ctx(e,items){
+    const m=$('#ctx'),d=desk.getBoundingClientRect();
+    m.innerHTML=items.map((it,i)=>it==='-'?'<hr>':`<button data-i="${i}" ${it[2]?'disabled':''}>${esc(it[0])}</button>`).join('');
+    m.hidden=false;
+    const x=Math.min(e.clientX-d.left,d.width-m.offsetWidth-6),y=Math.min(e.clientY-d.top,d.height-m.offsetHeight-50);
+    m.style.left=Math.max(4,x)+'px';m.style.top=Math.max(4,y)+'px';
+    m.onclick=ev=>{const b=ev.target.closest('button');if(!b||b.disabled)return;m.hidden=true;items[b.dataset.i][1]()};
+  }
+  desk.addEventListener('contextmenu',e=>{if(!e.target.closest('#exList,textarea,input'))e.preventDefault()});
+
+  function render(){if(W.ex.open)renderEx();renderDesk();renderTask();npTitle();check()}
+  function reset(){
+    build();clip=null;mi=0;helpOpen=false;flags={};
+    W={ex:{open:false,min:false,cwd:root,hist:[],sel:null,ren:null},np:{open:false,min:false,file:null,text:'',dirty:false},im:{open:false,min:false},dsel:null};
+    npText.value='';$('#dlg').hidden=true;$('#ask').hidden=true;$('#ctx').hidden=true;
+    wins.ex.style.cssText='';wins.np.style.cssText='';wins.im.style.cssText='';
+    render();
+  }
+  function key(e){
+    if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'&&W.np.open&&!W.np.min){e.preventDefault();save()}
+  }
+  fillIcons(desk);reset();
+  return {key};
+})();
+
+/* =========================================================
+   2 · RATO
+   ========================================================= */
+const RATO=(()=>{
+  const A=$('#arena');let lv='click',st={},msgT;
+  const msg=t=>{let m=$('.amsg',A);if(!m){m=document.createElement('div');m.className='amsg';A.appendChild(m)}m.textContent=t;m.hidden=false;clearTimeout(msgT);msgT=setTimeout(()=>m.hidden=true,2800)};
+  const ORDER=['click','dbl','drag','right'];
+  const doneBox=(title,text)=>{
+    const nx=ORDER[ORDER.indexOf(lv)+1];
+    A.insertAdjacentHTML('beforeend',`<div class="donebox"><div><h3>${title}</h3><p>${text}</p><div class="mrow" style="justify-content:center">${nx?`<button class="btn pri" data-next="${nx}">Nível seguinte</button>`:''}<button class="btn" data-again>Repetir</button></div></div></div>`);
+    if(!nx)markDone('rato');
+  };
+  A.addEventListener('click',e=>{const n=e.target.closest('[data-next]');if(n){set(n.dataset.next);return}if(e.target.closest('[data-again]'))set(lv)});
+  function set(l){lv=l;$$('#ratoSeg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lv===l));A.innerHTML='';A.oncontextmenu=null;({click,dbl:dblLv,drag,right})[l]()}
+  $('#ratoSeg').addEventListener('click',e=>{const b=e.target.closest('[data-lv]');if(b)set(b.dataset.lv)});
+
+  function click(){
+    st={n:0,max:10};
+    A.innerHTML=`<div class="ainfo"><span>Clica no alvo com o <b>botão esquerdo</b>.</span><span><b>${st.n}</b> / ${st.max}</span></div><button class="target" aria-label="Alvo"></button>`;
+    const t=$('.target',A);
+    const place=()=>{const s=Math.max(34,72-st.n*4),w=A.clientWidth,h=A.clientHeight;t.style.width=t.style.height=s+'px';t.style.left=(16+Math.random()*(w-s-32))+'px';t.style.top=(60+Math.random()*(h-s-80))+'px'};
+    place();
+    t.onclick=()=>{st.n++;$('.ainfo span:last-child',A).innerHTML=`<b>${st.n}</b> / ${st.max}`;if(st.n>=st.max){t.remove();doneBox('Boa pontaria!','Clicar é a coisa que mais vais fazer no computador. O alvo foi ficando mais pequeno e tu conseguiste.')}else place()};
+    A.onclick=e=>{if(e.target===A)msg('Quase! Aponta bem para o meio do alvo.')};
+  }
+  function dblLv(){
+    const prizes=[['🐢','Tartaruga'],['🚀','Foguetão'],['🍓','Morango'],['🎈','Balão'],['🦉','Coruja'],['🌈','Arco-íris']];
+    st={open:0};
+    A.onclick=null;
+    A.innerHTML=`<div class="ainfo"><span>Abre as caixas com <b>duplo clique</b>: dois cliques rápidos, sem mexer o rato.</span><span><b>0</b> / 6</span></div><div class="gifts">${prizes.map((p,i)=>`<button class="gift" data-g="${i}" aria-label="Caixa fechada"><span class="lid"></span></button>`).join('')}</div>`;
+    const h=dbl(i=>{const g=$(`[data-g="${i}"]`,A);if(g.classList.contains('open'))return;g.classList.remove('shake');void g.offsetWidth;g.classList.add('shake');msg('Isso foi só um clique. Clica duas vezes depressa!')},
+      i=>{const g=$(`[data-g="${i}"]`,A);if(g.classList.contains('open'))return;g.classList.add('open');g.innerHTML=`${prizes[i][0]}<small>${prizes[i][1]}</small>`;st.open++;$('.ainfo span:last-child',A).innerHTML=`<b>${st.open}</b> / 6`;
+        if(st.open===6)setTimeout(()=>doneBox('Todas abertas!','O duplo clique serve para abrir pastas, ficheiros e programas. Agora já sabes fazê-lo.'),600)},400);
+    $('.gifts',A).addEventListener('click',e=>{const g=e.target.closest('[data-g]');if(g)h(g.dataset.g,e)});
+  }
+  function drag(){
+    const files=shuffle([['férias.png','png'],['gato.png','png'],['hino.mp3','mp3'],['dança.mp3','mp3'],['redação.txt','txt'],['notas.txt','txt']]);
+    const zones=[['png','Imagens','As imagens terminam em .png'],['mp3','Música','As músicas terminam em .mp3'],['txt','Documentos','Os textos terminam em .txt']];
+    st={left:files.length};
+    A.onclick=null;
+    A.innerHTML=`<div class="ainfo"><span>Arrasta cada ficheiro para a pasta certa. Olha para o fim do nome!</span><span><b>0</b> / 6</span></div>
+      <div class="files">${files.map(f=>`<div class="dfile" data-k="${f[1]}" data-n="${f[0]}">${ICONS[f[1]]}<span>${f[0]}</span></div>`).join('')}</div>
+      <div class="zones">${zones.map(z=>`<div class="zone" data-z="${z[0]}">${ICONS.folder}<span>${z[1]}</span><div class="got"></div></div>`).join('')}</div>`;
+    $$('.dfile',A).forEach(el=>{
+      el.addEventListener('pointerdown',e=>{
+        e.preventDefault();el.setPointerCapture(e.pointerId);
+        const sx=e.clientX,sy=e.clientY;el.classList.add('drag');let hot=null;
+        const zoneAt=(x,y)=>{const t=document.elementFromPoint(x,y);return t&&t.closest('.zone')};
+        const mv=ev=>{el.style.transform=`translate(${ev.clientX-sx}px,${ev.clientY-sy}px)`;const z=zoneAt(ev.clientX,ev.clientY);if(z!==hot){hot&&hot.classList.remove('hot');hot=z;hot&&hot.classList.add('hot')}};
+        const up=ev=>{el.removeEventListener('pointermove',mv);el.removeEventListener('pointerup',up);el.removeEventListener('pointercancel',up);el.classList.remove('drag');hot&&hot.classList.remove('hot');
+          const z=zoneAt(ev.clientX,ev.clientY);
+          if(z&&z.dataset.z===el.dataset.k){$('.got',z).insertAdjacentHTML('beforeend',`<span>${esc(el.dataset.n)}</span>`);el.remove();st.left--;$('.ainfo span:last-child',A).innerHTML=`<b>${6-st.left}</b> / 6`;
+            if(!st.left)setTimeout(()=>doneBox('Tudo arrumado!','Arrastar serve para mudar ficheiros de pasta. E aprendeste que o fim do nome (.png, .mp3, .txt) diz que tipo de ficheiro é.'),400)}
+          else{el.style.transition='transform .3s';el.style.transform='';setTimeout(()=>el.style.transition='',320);if(z){const zz=zones.find(q=>q[0]===el.dataset.k);msg(`Essa não é a pasta certa. ${zz[2]}.`)}else if(Math.abs(ev.clientX-sx)<5&&Math.abs(ev.clientY-sy)<5)msg('Carrega e NÃO largues o botão enquanto mexes o rato.')}};
+        el.addEventListener('pointermove',mv);el.addEventListener('pointerup',up);el.addEventListener('pointercancel',up);
+      });
+    });
+  }
+  function right(){
+    const shapes=[['circ','círculo'],['sq','quadrado'],['tri','triângulo']];
+    const colors=[['vermelho','var(--tomato)'],['azul','var(--sky)'],['verde','var(--leaf)'],['amarelo','var(--sun)']];
+    st={n:0,max:5};
+    A.onclick=null;
+    const newTask=()=>{const s=shapes[Math.random()*3|0],c=colors[Math.random()*4|0];st.t={s:s[0],c:c[0]};$('.ainfo span:first-child',A).innerHTML=`Clica com o <b>botão direito</b> no <b>${s[1]}</b> e escolhe <b>Pintar de ${c[0]}</b>.`};
+    A.innerHTML=`<div class="ainfo"><span></span><span><b>0</b> / 5</span></div><div class="shapes">${shapes.map(s=>`<button class="shape ${s[0]}" data-s="${s[0]}" aria-label="${s[1]}"></button>`).join('')}</div>`;
+    newTask();
+    let menu=null;
+    const closeM=()=>{menu&&menu.remove();menu=null};
+    A.oncontextmenu=e=>{e.preventDefault();closeM();const sh=e.target.closest('.shape');if(!sh){msg('Clica com o botão direito em cima de uma forma.');return}
+      const r=A.getBoundingClientRect();menu=document.createElement('div');menu.className='ctx';menu.style.position='absolute';
+      menu.innerHTML=colors.map(c=>`<button data-c="${c[0]}">Pintar de ${c[0]}</button>`).join('');A.appendChild(menu);
+      menu.style.left=Math.min(e.clientX-r.left,r.width-menu.offsetWidth-8)+'px';menu.style.top=Math.min(e.clientY-r.top,r.height-menu.offsetHeight-8)+'px';
+      menu.onclick=ev=>{const b=ev.target.closest('[data-c]');if(!b)return;const col=colors.find(c=>c[0]===b.dataset.c);sh.style.background=col[1];closeM();
+        if(sh.dataset.s===st.t.s&&col[0]===st.t.c){st.n++;$('.ainfo span:last-child',A).innerHTML=`<b>${st.n}</b> / 5`;if(st.n>=st.max){setTimeout(()=>doneBox('És mestre do rato!','O botão direito mostra um menu com opções escondidas. No Explorador de Ficheiros serve para mudar o nome, eliminar, copiar e muito mais.'),500)}else{msg('Muito bem!');newTask()}}
+        else msg('Olha outra vez para a instrução: qual forma e qual cor?')};
+    };
+    A.addEventListener('pointerdown',e=>{if(menu&&!e.target.closest('.ctx'))closeM()});
+    $('.shapes',A).addEventListener('click',e=>{if(e.target.closest('.shape'))msg('Esse foi o botão esquerdo. Experimenta o botão do lado direito do rato.')});
+  }
+  set('click');
+})();
+
+/* =========================================================
+   3 · TECLADO
+   ========================================================= */
+const KBD=(()=>{
+  const L=(s)=>s.split(' ').map(c=>['Key'+c,c]);
+  const ROWS=[
+    [['Backquote','\\'],['Digit1','1'],['Digit2','2'],['Digit3','3'],['Digit4','4'],['Digit5','5'],['Digit6','6'],['Digit7','7'],['Digit8','8'],['Digit9','9'],['Digit0','0'],['Minus',"'"],['Equal','«'],['Backspace','⟵ Apagar',2]],
+    [['Tab','Tab ⇥',1.5],...L('Q W E R T Y U I O P'),['BracketLeft','+'],['BracketRight','´'],['Enter','Enter ↵',1.5]],
+    [['CapsLock','Caps Lock',1.75],...L('A S D F G H J K L'),['Semicolon','Ç'],['Quote','º'],['Backslash','~'],['Enter','',1.25]],
+    [['ShiftLeft','⇧ Shift',1.25],['IntlBackslash','<'],...L('Z X C V B N M'),['Comma',','],['Period','.'],['Slash','-'],['ShiftRight','⇧ Shift',2.75]],
+    [['ControlLeft','Ctrl',1.5],['MetaLeft','Win',1.25],['AltLeft','Alt',1.25],['Space','Espaço',7.5],['AltRight','Alt Gr',1.25],['ControlRight','Ctrl',2.25]]
+  ];
+  const FING={p:'Backquote Digit1 KeyQ KeyA KeyZ IntlBackslash Tab CapsLock ShiftLeft ControlLeft Digit0 Minus Equal Backspace KeyP BracketLeft BracketRight Enter Semicolon Quote Backslash Slash ShiftRight ControlRight',
+    r:'Digit2 KeyW KeyS KeyX Digit9 KeyO KeyL Period',m:'Digit3 KeyE KeyD KeyC Digit8 KeyI KeyK Comma',i:'Digit4 Digit5 KeyR KeyT KeyF KeyG KeyV KeyB Digit6 Digit7 KeyY KeyU KeyH KeyJ KeyN KeyM',t:'Space AltLeft AltRight MetaLeft'};
+  const fOf=c=>{for(const k in FING)if(FING[k].split(' ').includes(c))return k;return 't'};
+  const LEFT='Backquote Digit1 Digit2 Digit3 Digit4 Digit5 Tab KeyQ KeyW KeyE KeyR KeyT CapsLock KeyA KeyS KeyD KeyF KeyG ShiftLeft IntlBackslash KeyZ KeyX KeyC KeyV KeyB ControlLeft MetaLeft AltLeft'.split(' ');
+  const FN={p:'mindinho',r:'anelar',m:'dedo médio',i:'indicador',t:'polegar'};
+  const fingerTxt=c=>{const f=fOf(c);if(f==='t')return 'Usa o polegar.';return `Usa o ${FN[f]} da mão ${LEFT.includes(c)?'esquerda':'direita'}.`};
+  const label={};ROWS.flat().forEach(([c,l])=>{if(l)label[c]=l});
+  const SETS={meio:'KeyA KeyS KeyD KeyF KeyG KeyH KeyJ KeyK KeyL Semicolon',cima:'KeyQ KeyW KeyE KeyR KeyT KeyY KeyU KeyI KeyO KeyP',baixo:'KeyZ KeyX KeyC KeyV KeyB KeyN KeyM',
+    letras:'KeyQ KeyW KeyE KeyR KeyT KeyY KeyU KeyI KeyO KeyP KeyA KeyS KeyD KeyF KeyG KeyH KeyJ KeyK KeyL Semicolon KeyZ KeyX KeyC KeyV KeyB KeyN KeyM',num:'Digit1 Digit2 Digit3 Digit4 Digit5 Digit6 Digit7 Digit8 Digit9 Digit0'};
+  const ESP=[
+    {q:'Que tecla faz um espaço entre duas palavras?',c:['Space'],n:'Barra de espaço'},
+    {q:'Que tecla apaga a letra que está antes do cursor?',c:['Backspace'],n:'Apagar (Retrocesso)'},
+    {q:'Que tecla muda de linha quando estás a escrever?',c:['Enter','NumpadEnter'],n:'Enter'},
+    {q:'Para escrever UMA letra maiúscula, manténs esta tecla carregada. Qual é?',c:['ShiftLeft','ShiftRight'],n:'Shift'},
+    {q:'Que tecla liga e desliga as MAIÚSCULAS todas?',c:['CapsLock'],n:'Caps Lock'},
+    {q:'Que tecla salta para a caixa seguinte de um formulário?',c:['Tab'],n:'Tab'},
+    {q:'Que tecla usas nos atalhos, como copiar e colar?',c:['ControlLeft','ControlRight'],n:'Ctrl'},
+    {q:'Para escrever @ carregas no 2 junto com esta tecla. Qual é?',c:['AltRight'],n:'Alt Gr'}
+  ];
+  const DESC={Space:'Barra de espaço: faz espaço entre palavras.',Backspace:'Apagar: apaga a letra antes do cursor.',Enter:'Enter: muda de linha ou confirma.',ShiftLeft:'Shift: mantém carregado para maiúsculas e para os símbolos de cima.',ShiftRight:'Shift: mantém carregado para maiúsculas e para os símbolos de cima.',CapsLock:'Caps Lock: liga e desliga as maiúsculas.',Tab:'Tab: salta para a caixa seguinte.',ControlLeft:'Ctrl: usado nos atalhos (Ctrl + C copia).',ControlRight:'Ctrl: usado nos atalhos.',AltLeft:'Alt: usado em alguns atalhos.',AltRight:'Alt Gr: escreve o terceiro símbolo da tecla, como @ e €.',MetaLeft:'Windows: abre o menu Iniciar.',Semicolon:'Ç: a cedilha, tão portuguesa!',BracketRight:'Acento agudo ´: carrega e depois na vogal, para escrever á, é…',Backslash:'Til ~: carrega e depois no a ou no o, para escrever ã, õ.',Quote:'º: para escrever 1.º, 2.º…'};
+  const ROUNDS=12;
+  let mode='ver',setK='meio',S={};
+  const kb=$('#kb'),stage=$('#kbStage');
+  function buildKb(){
+    kb.innerHTML=ROWS.map(r=>`<div class="krow">${r.map(([c,l,w=1])=>`<div class="k f-${fOf(c)}${l.length>2?' sm':''}${c==='KeyF'||c==='KeyJ'?' bump':''}" data-c="${c}" style="flex:${w} ${w} 0"><span class="lbl">${esc(l)}</span></div>`).join('')}</div>`).join('');
+  }
+  const kEls=c=>$$(`.k[data-c="${c}"]`,kb);
+  function flash(c,cls){kEls(c).forEach(k=>{k.classList.add('down',cls||'x');setTimeout(()=>k.classList.remove('down',cls||'x'),cls?380:140)})}
+  function setTarget(c){$$('.k.tgt',kb).forEach(k=>k.classList.remove('tgt'));if(c)kEls(c).forEach(k=>k.classList.add('tgt'))}
+  const prog=()=>`<div class="prog">${Array.from({length:S.max},(_,i)=>`<i class="${i<S.i?'ok':i===S.i?'now':''}"></i>`).join('')}</div>`;
+  function start(){
+    $('#kbSet').hidden=!(mode==='ver'||mode==='mem');
+    kb.classList.toggle('plain',false);
+    $$('.k',kb).forEach(k=>k.classList.toggle('hide',mode==='mem'));
+    setTarget(null);
+    if(mode==='livre'){S={};stage.innerHTML=`<span class="cap bigcap sm">?</span><div><p class="q">Carrega em qualquer tecla.</p><p class="sub">Vê onde ela fica no teclado e com que dedo se carrega.</p></div>`;return}
+    if(mode==='esp'){S={i:0,max:ESP.length,list:shuffle(ESP),miss:0};askEsp();return}
+    const pool=SETS[setK].split(' ');S={i:0,max:ROUNDS,pool,last:null,miss:0};nextLetter();
+  }
+  function nextLetter(){
+    if(S.i>=S.max)return finish();
+    let c;do{c=S.pool[Math.random()*S.pool.length|0]}while(c===S.last&&S.pool.length>1);S.last=c;S.t=c;S.miss=0;
+    stage.innerHTML=`<span class="cap bigcap">${esc(label[c])}</span><div><p class="q">Carrega na tecla <b>${esc(label[c])}</b>.</p><p class="sub">${fingerTxt(c)}${mode==='mem'?' As letras estão escondidas: tenta lembrar-te onde fica.':''}</p>${prog()}</div>`;
+    setTarget(mode==='ver'?c:null);
+  }
+  function askEsp(){
+    if(S.i>=S.max)return finish();
+    S.t=S.list[S.i];S.miss=0;
+    stage.innerHTML=`<span class="cap bigcap sm">?</span><div><p class="q">${esc(S.t.q)}</p><p class="sub">Carrega nessa tecla no teu teclado.</p>${prog()}</div>`;
+    setTarget(null);
+  }
+  function finish(){
+    setTarget(null);
+    stage.innerHTML=`<span class="cap bigcap sm" style="background:var(--leaf-s)">✓</span><div><p class="q"><b>Muito bem, acabaste!</b></p><p class="sub">Os teus dedos estão a aprender o caminho. Amanhã experimenta outra fila. Por hoje, chega de teclado.</p><div class="mrow" style="margin-top:10px"><button class="btn" id="kbAgain">Fazer outra vez</button></div></div>`;
+    $('#kbAgain').onclick=start;markDone('teclado');S.over=true;
+  }
+  function key(e){
+    if(e.target.closest&&e.target.closest('input,textarea'))return;
+    if(e.repeat){e.preventDefault();return}
+    const c=e.code;if(!c)return;
+    if(!(e.ctrlKey&&c!=='ControlLeft'&&c!=='ControlRight'&&mode!=='esp'))e.preventDefault();
+    if(mode==='livre'){flash(c);const k=kEls(c)[0];const l=label[c];
+      stage.innerHTML=`<span class="cap bigcap${l&&l.length>2?' sm':''}">${l?esc(l):'?'}</span><div><p class="q">${DESC[c]?esc(DESC[c]):l?`Tecla <b>${esc(l)}</b>`:`Esta tecla (${esc(e.key)}) não está no desenho.`}</p><p class="sub">${k?fingerTxt(c):''}</p></div>`;return}
+    if(S.over||!S.t){flash(c);return}
+    if(mode==='esp'){
+      if(S.t.c.includes(c)){flash(c,'good');S.i++;setTimeout(askEsp,450)}
+      else{
+        if(S.t.c[0]==='AltRight'&&c==='ControlLeft')return; // o Alt Gr envia também Ctrl
+        flash(c,'bad');S.miss++;
+        const what=DESC[c]?DESC[c].split(':')[0]:(label[c]||e.key);
+        $('.sub',stage).innerHTML=`Essa é a tecla <b>${esc(what)}</b>. ${S.miss>=2?`A resposta está a piscar: é <b>${esc(S.t.n)}</b>.`:'Tenta outra vez.'}`;
+        if(S.miss>=2)setTarget(S.t.c[0]);
+      }
+      return;
+    }
+    if(c===S.t){flash(c,'good');if(mode==='mem')kEls(c).forEach(k=>{k.classList.remove('hide');setTimeout(()=>k.classList.add('hide'),700)});S.i++;setTimeout(nextLetter,380)}
+    else{flash(c,'bad');S.miss++;
+      $('.sub',stage).innerHTML=`Essa foi a tecla <b>${esc(label[c]||e.key)}</b>. ${fingerTxt(S.t)}${S.miss>=2&&mode==='mem'?' Olha, está a piscar.':''}`;
+      if(S.miss>=2)setTarget(S.t);}
+  }
+  $('#kbMode').addEventListener('click',e=>{const b=e.target.closest('[data-m]');if(!b)return;mode=b.dataset.m;$$('#kbMode button').forEach(x=>x.setAttribute('aria-pressed',x===b));start();b.blur()});
+  $('#kbSet').addEventListener('click',e=>{const b=e.target.closest('[data-s]');if(!b)return;setK=b.dataset.s;$$('#kbSet button').forEach(x=>x.setAttribute('aria-pressed',x===b));start();b.blur()});
+  buildKb();start();
+  return {key,enter(){if(document.activeElement)document.activeElement.blur()}};
+})();
+
+/* =========================================================
+   4 · PALAVRAS
+   ========================================================= */
+const WORDS=(()=>{
+  const FACIL=[['🐱','gato'],['☀️','sol'],['🏠','casa'],['🐟','peixe'],['⚽','bola'],['🌙','lua'],['🌸','flor'],['📖','livro'],['🚗','carro'],['🦆','pato'],['🐭','rato'],['🍇','uva'],['🎂','bolo'],['⛵','barco'],['🐸','sapo'],['🍌','banana'],['🦒','girafa'],['🐝','abelha'],['🚲','bicicleta'],['⭐','estrela']];
+  const DIF=[['🐶','cão'],['🍎','maçã'],['✈️','avião'],['❤️','coração'],['🍞','pão'],['🌳','árvore'],['🍋','limão'],['🦁','leão'],['🎵','música'],['🧲','íman'],['🧦','meias'],['🐘','elefante']];
+  const FRASES=['O gato dorme no sofá.','Hoje está um dia de sol.','A Maria tem uma bicicleta azul.','Eu gosto de ler livros.','O Pedro joga à bola no parque.','Amanhã vou à escola.','Os peixes vivem na água.','Que bonito arco-íris!'];
+  const G=$('#wGame');let mode='ver',S={};const N=8;
+  const progress=()=>`<p class="eyebrow">${Math.min(S.i+1,N)} de ${N}</p>`;
+  function set(m){mode=m;$$('#wSeg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.w===m));
+    const src=m==='desafio'?DIF:m==='frase'?FRASES:FACIL;S={i:0,list:shuffle(src).slice(0,N)};round()}
+  $('#wSeg').addEventListener('click',e=>{const b=e.target.closest('[data-w]');if(b)set(b.dataset.w)});
+  function finish(){
+    const ideas={ver:'Escolhe uma das palavras e faz um desenho dela num papel.',desafio:'Agora escreve num papel uma frase com a palavra "coração".',bar:'Inventa tu uma palavra baralhada e dá-a a alguém lá de casa para adivinhar.',frase:'Lê uma das frases em voz alta a alguém lá de casa.'};
+    G.innerHTML=`<span class="cap bigcap sm" style="background:var(--leaf-s)">✓</span><h3 style="font-size:32px">Acabaste!</h3><p class="tip">${ideas[mode]}</p><button class="btn" id="wAgain">Jogar outra vez</button>`;
+    $('#wAgain').onclick=()=>set(mode);markDone('palavras');
+  }
+  const next=()=>{S.i++;setTimeout(round,650)};
+  function round(){
+    if(S.i>=N)return finish();
+    if(mode==='ver'||mode==='desafio')typeWord();else if(mode==='bar')scramble();else sentence();
+  }
+  function typeWord(){
+    const [emo,w]=S.list[S.i],show=mode==='ver';
+    G.innerHTML=`${progress()}<div class="emo" aria-hidden="true">${emo}</div><div class="word" id="wWord"></div>
+      <input class="winput" id="wIn" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Escreve a palavra">
+      <p class="tip" id="wTip">${show?'Escreve a palavra que vês.':'Escreve o nome do que vês. Atenção aos acentos!'} ${mode==='desafio'?'Para o <b>ã</b>: carrega na tecla <kbd>~</kbd>, larga, e depois no <kbd>A</kbd>. Para o <b>á</b>: tecla <kbd>´</kbd> e depois a vogal.':''}</p>
+      <button class="btn ghost" id="wSkip">Não sei, mostra-me</button>`;
+    const inp=$('#wIn'),box=$('#wWord');
+    const paint=()=>{const v=inp.value.toLowerCase();box.innerHTML=[...w].map((ch,i)=>{const t=v[i];const cls=t==null?(i===v.length?'next':''):(t===ch?'ok':'bad');const shown=t!=null?t:(show||i===0?ch:'');return `<span class="${cls}">${esc(shown)}</span>`}).join('')};
+    paint();inp.focus();
+    inp.oninput=()=>{paint();if(inp.value.toLowerCase().trim()===w){inp.disabled=true;$('#wTip').innerHTML='<b style="color:var(--leaf)">Certo!</b>';next()}
+      else if(norm(inp.value)===norm(w)&&inp.value.length>=w.length)$('#wTip').innerHTML='Quase! As letras estão certas, mas falta um acento. Olha para a palavra com atenção.'};
+    $('#wSkip').onclick=()=>{$('#wTip').innerHTML=`A palavra é <b>${esc(w)}</b>. Escreve-a para continuar.`;inp.value='';paint();box.innerHTML=[...w].map(ch=>`<span>${esc(ch)}</span>`).join('');inp.focus()};
+  }
+  function scramble(){
+    const [emo,w]=S.list[S.i];let letters;do{letters=shuffle([...w])}while(letters.join('')===w&&new Set(w).size>1);
+    let ans=[];
+    G.innerHTML=`${progress()}<div class="emo" aria-hidden="true">${emo}</div><div class="word" id="wWord"></div><div class="tiles" id="wTiles"></div>
+      <p class="tip" id="wTip">Clica nas letras pela ordem certa, ou escreve-as no teclado. A tecla <kbd>⟵ Apagar</kbd> tira a última.</p><button class="btn ghost" id="wUndo">Apagar última letra</button>`;
+    const tiles=$('#wTiles'),box=$('#wWord');
+    tiles.innerHTML=letters.map((l,i)=>`<button class="cap" data-i="${i}">${esc(l.toUpperCase())}</button>`).join('');
+    const paint=()=>{box.innerHTML=[...w].map((ch,i)=>`<span class="${ans[i]==null?(i===ans.length?'next':''):(letters[ans[i]]===ch?'ok':'bad')}">${ans[i]!=null?esc(letters[ans[i]]):''}</span>`).join('');
+      $$('button',tiles).forEach(b=>b.disabled=ans.includes(+b.dataset.i));
+      if(ans.length===w.length){if(ans.map(i=>letters[i]).join('')===w){$('#wTip').innerHTML='<b style="color:var(--leaf)">Certo!</b>';S.done=true;next()}else $('#wTip').textContent='Não é bem assim. Apaga e tenta outra ordem.'}};
+    const add=i=>{if(ans.length<w.length&&!ans.includes(i)){ans.push(i);paint()}};
+    const undo=()=>{ans.pop();paint()};
+    tiles.onclick=e=>{const b=e.target.closest('[data-i]');if(b)add(+b.dataset.i)};
+    $('#wUndo').onclick=undo;S.done=false;
+    S.key=e=>{if(S.done)return;if(e.key==='Backspace'){e.preventDefault();undo();return}const k=e.key.toLowerCase();if(k.length!==1)return;const i=letters.findIndex((l,j)=>l===k&&!ans.includes(j));if(i>=0)add(i)};
+    paint();
+  }
+  function sentence(){
+    const f=S.list[S.i];
+    G.innerHTML=`${progress()}<p class="sent" id="wSent"></p><input class="winput" id="wIn" style="font-family:var(--fb);font-size:20px;font-weight:500;width:min(640px,100%)" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Escreve a frase">
+      <p class="tip" id="wTip">Copia a frase exatamente. Para a maiúscula: mantém <kbd>⇧ Shift</kbd> carregado e carrega na letra. O ponto <kbd>.</kbd> está na fila de baixo.</p>`;
+    const inp=$('#wIn'),out=$('#wSent');
+    const paint=()=>{const v=inp.value;out.innerHTML=[...f].map((ch,i)=>{const t=v[i];const cls=t==null?(i===v.length?'next pend':'pend'):(t===ch?'ok':'bad');return `<span class="${cls}">${ch===' '?'&nbsp;':esc(ch)}</span>`}).join('');
+      const wrong=[...v].findIndex((t,i)=>t!==f[i]);
+      if(v===f){inp.disabled=true;$('#wTip').innerHTML='<b style="color:var(--leaf)">Perfeito!</b>';next()}
+      else if(wrong>=0){const exp=f[wrong];$('#wTip').innerHTML=exp&&exp!==exp.toLowerCase()&&v[wrong]===exp.toLowerCase()?'Essa letra devia ser <b>maiúscula</b>. Apaga com <kbd>⟵ Apagar</kbd> e usa o <kbd>⇧ Shift</kbd>.':`Há uma letra trocada (a vermelho). Apaga com <kbd>⟵ Apagar</kbd> e corrige.`}};
+    inp.oninput=paint;paint();inp.focus();
+  }
+  document.addEventListener('keydown',e=>{if(current==='palavras'&&mode==='bar'&&S.key&&!e.ctrlKey&&!e.metaKey&&!(e.target.closest&&e.target.closest('input,textarea')))S.key(e)});
+  set('ver');
+  return {focus(){const i=$('#wIn');if(i&&!i.disabled)setTimeout(()=>i.focus(),0)}};
+})();
+
+/* =========================================================
+   5 · ATALHOS
+   ========================================================= */
+const AT=(()=>{
+  const A=$('#atA'),B=$('#atB'),fl=$('#atFlash');let i=0;
+  const STEPS=[
+    {t:'Selecionar tudo',k:['Ctrl','A'],d:'Clica dentro da Caixa 1 e carrega em Ctrl + A. Todo o texto fica marcado a azul.'},
+    {t:'Copiar',k:['Ctrl','C'],d:'Com o texto marcado, carrega em Ctrl + C. O computador guarda uma cópia na memória. Não vês nada a mudar!'},
+    {t:'Colar',k:['Ctrl','V'],d:'Clica dentro da Caixa 2 e carrega em Ctrl + V. A cópia aparece!'},
+    {t:'Cortar',k:['Ctrl','X'],d:'Na Caixa 2, seleciona uma palavra (faz duplo clique nela) e carrega em Ctrl + X. Desaparece, mas fica guardada para colar.'},
+    {t:'Anular',k:['Ctrl','Z'],d:'Enganaste-te? Carrega em Ctrl + Z na Caixa 2 e a palavra volta. É o botão mágico de "desfazer".'},
+    {t:'Guardar',k:['Ctrl','S'],d:'Carrega em Ctrl + S. Em quase todos os programas, isto guarda o teu trabalho. Usa-o muitas vezes!'}
+  ];
+  function render(){
+    $('#atSteps').innerHTML=STEPS.map((s,j)=>`<li class="${j<i?'ok':j===i?'now':''}"><span class="n">${j<i?'✓':j+1}</span><div><b>${s.t}</b> · ${s.k.map(x=>`<kbd>${x}</kbd>`).join(' + ')}${j===i?`<small>${s.d}</small>`:''}</div></li>`).join('');
+  }
+  function ok(j,text){if(i!==j)return;i++;fl.hidden=false;fl.innerHTML=i>=STEPS.length?'<b>Conseguiste os 6 atalhos!</b> Estes atalhos funcionam no Word, no navegador, no e-mail e em quase tudo. Experimenta-os no computador verdadeiro.':text;render();if(i>=STEPS.length)markDone('atalhos')}
+  const mod=e=>e.ctrlKey||e.metaKey;
+  A.addEventListener('keydown',e=>{if(mod(e)&&e.key.toLowerCase()==='a')setTimeout(()=>{if(A.selectionStart===0&&A.selectionEnd===A.value.length&&A.value.length)ok(0,'Tudo selecionado! Agora copia.')},0)});
+  A.addEventListener('copy',()=>{if(i===0&&A.selectionEnd-A.selectionStart>0){i=1}ok(1,'Copiado! O texto está guardado na memória do computador.')});
+  B.addEventListener('paste',()=>{setTimeout(()=>ok(2,'Colado! Copiar e colar poupa muito trabalho.'),0)});
+  B.addEventListener('cut',()=>setTimeout(()=>ok(3,'Cortado! A palavra saiu daqui mas está guardada.'),0));
+  B.addEventListener('keydown',e=>{if(mod(e)&&e.key.toLowerCase()==='z')setTimeout(()=>ok(4,'Anulado! O Ctrl + Z desfaz o último passo.'),0)});
+  function key(e){if(mod(e)&&e.key.toLowerCase()==='s'){e.preventDefault();if(i===5)ok(5,'');else{fl.hidden=false;fl.textContent='Guardado! (Mas ainda há passos antes deste.)'}}}
+  $('#atReset').onclick=()=>{i=0;A.value='Os computadores obedecem a atalhos. Copia-me!';B.value='';fl.hidden=true;render()};
+  render();
+  return {key};
+})();
+
+document.addEventListener('keydown',e=>{
+  if(!$('#pause').hidden)return;
+  if(current==='teclado')KBD.key(e);else if(current==='pc')PC.key(e);else if(current==='atalhos')AT.key(e);
+});
+
+/* ---------- pausa ---------- */
+(()=>{
+  let limit=20*60,used=0,cd=null;
+  setInterval(()=>{
+    if(document.hidden||!limit||!$('#pause').hidden)return;
+    if(current==='home'||current==='adultos')return;
+    used++;if(used>=limit){used=0;open()}
+  },1000);
+  function open(){const p=$('#pause'),b=$('#pauseOk');p.hidden=false;let s=30;b.disabled=true;b.textContent=`Espera ${s} segundos`;clearInterval(cd);
+    cd=setInterval(()=>{s--;if(s<=0){clearInterval(cd);b.disabled=false;b.textContent='Já fiz a pausa'}else b.textContent=`Espera ${s} segundos`},1000)}
+  $('#pauseOk').onclick=()=>{$('#pause').hidden=true};
+  $('#pauseSeg').addEventListener('click',e=>{const b=e.target.closest('[data-p]');if(!b)return;limit=+b.dataset.p*60;used=0;$$('#pauseSeg button').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+})();
+
+fillIcons();
+go((location.hash||'').slice(1)||'home');
+</script>
+
+</body>
+</html>
