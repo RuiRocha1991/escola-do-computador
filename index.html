@@ -331,6 +331,9 @@ section>.shead{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;mar
 .sud .sel{background:var(--sun-s);box-shadow:inset 0 0 0 3px var(--sun)}
 .sud .bad{color:var(--tomato);background:var(--tomato-s)}
 .sud.won button{background:var(--leaf-s)}
+.sud .nts{display:grid;width:100%;height:100%;padding:2px;font-family:var(--fb);font-weight:500;font-size:calc(var(--fs) * .5);color:var(--muted);line-height:1}
+.sud .nts i{font-style:normal;display:grid;place-items:center}
+#sPen[aria-pressed="true"]{background:var(--sun-s);border-color:var(--sun)}
 .pad{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .pad .cap{min-width:50px;height:52px;font-size:24px;border:1px solid var(--line)}
 .pad .cap.sm{font-size:15px;font-family:var(--fb);font-weight:600}
@@ -1336,33 +1339,41 @@ const PENSAR=(()=>{
   /* ---- sudoku ---- */
   const SZ={4:{br:2,bc:2,rm:9,w:'300px',fs:'clamp(26px,9vw,38px)'},6:{br:2,bc:3,rm:20,w:'390px',fs:'clamp(20px,6.5vw,32px)'},9:{br:3,bc:3,rm:46,w:'470px',fs:'clamp(15px,4.6vw,26px)'}};
   const ANIM=['🐱','🐶','🐸','🐰','🐻','🦊'];
-  let S={n:4,sym:'num',err:true};
+  const LV={facil:{rm:38,h:6,l:'Fácil'},medio:{rm:46,h:4,l:'Médio'},dificil:{rm:52,h:3,l:'Difícil'},mestre:{rm:64,h:2,l:'Mestre'}};
+  let S={n:4,sym:'num',err:true,lv:'facil',pen:false};
   const sym=v=>!v?'':S.sym==='ani'&&S.n<=6?ANIM[v-1]:String(v);
   function canPut(g,n,cfg,i,v){const r=i/n|0,c=i%n;
     for(let k=0;k<n;k++){if(g[r*n+k]===v&&r*n+k!==i)return false;if(g[k*n+c]===v&&k*n+c!==i)return false}
     const r0=r-r%cfg.br,c0=c-c%cfg.bc;for(let a=0;a<cfg.br;a++)for(let b=0;b<cfg.bc;b++){const j=(r0+a)*n+c0+b;if(j!==i&&g[j]===v)return false}return true}
   function fill(g,n,cfg){const i=g.indexOf(0);if(i<0)return true;for(const v of shuffle([...Array(n)].map((_,k)=>k+1)))if(canPut(g,n,cfg,i,v)){g[i]=v;if(fill(g,n,cfg))return true;g[i]=0}return false}
-  function count(g,n,cfg,lim){const i=g.indexOf(0);if(i<0)return 1;let t=0;for(let v=1;v<=n&&t<lim;v++)if(canPut(g,n,cfg,i,v)){g[i]=v;t+=count(g,n,cfg,lim-t);g[i]=0}return t}
+  function count(g,n,cfg,lim){
+    let best=-1,bc=null;
+    for(let i=0;i<g.length;i++)if(!g[i]){const c=[];for(let v=1;v<=n;v++)if(canPut(g,n,cfg,i,v))c.push(v);if(!c.length)return 0;if(!bc||c.length<bc.length){best=i;bc=c;if(c.length===1)break}}
+    if(best<0)return 1;let t=0;for(const v of bc){g[best]=v;t+=count(g,n,cfg,lim-t);g[best]=0;if(t>=lim)break}return t}
   function newSud(){
     const n=S.n,cfg=SZ[n],sol=Array(n*n).fill(0);fill(sol,n,cfg);
+    const target=n===9?LV[S.lv].rm:cfg.rm;
     const p=[...sol];let rm=0;
-    for(const i of shuffle([...p.keys()])){if(rm>=cfg.rm)break;const k=p[i];p[i]=0;if(count([...p],n,cfg,2)!==1)p[i]=k;else rm++}
-    Object.assign(S,{cfg,sol,cur:p,giv:p.map(Boolean),sel:p.indexOf(0),hints:n===9?5:3,won:false});
+    for(const i of shuffle([...p.keys()])){if(rm>=target)break;const k=p[i];p[i]=0;if(count([...p],n,cfg,2)!==1)p[i]=k;else rm++}
+    Object.assign(S,{cfg,sol,cur:p,giv:p.map(Boolean),notes:p.map(()=>new Set()),sel:p.indexOf(0),hints:n===9?LV[S.lv].h:3,won:false});
     renderS();
   }
   const peers=i=>{const n=S.n,c=S.cfg,r=i/n|0,col=i%n;return j=>{const r2=j/n|0,c2=j%n;return r2===r||c2===col||((r2-r2%c.br)===(r-r%c.br)&&(c2-c2%c.bc)===(col-col%c.bc))}};
   const isBad=i=>S.cur[i]&&!canPut(S.cur,S.n,S.cfg,i,S.cur[i]);
   function sudoku(){
     box.innerHTML=`<div class="pzopts"><div class="seg" id="sSize"><button data-n="4">4 × 4 · fácil</button><button data-n="6">6 × 6 · médio</button><button data-n="9">9 × 9 · desafio</button></div></div>
+      <div class="pzopts" id="sLvRow"><span class="eyebrow">Nível</span><div class="seg" id="sLv">${Object.entries(LV).map(([k,v])=>`<button data-lv="${k}">${v.l}</button>`).join('')}</div></div>
       <div class="pzopts"><div class="seg" id="sSym"><button data-s="num">Números</button><button data-s="ani">Animais</button></div>
       <label><input type="checkbox" id="sErr"> Mostrar repetidos a vermelho</label></div>
       <p class="gstat" id="sStat"></p>
       <div class="sud" id="sGrid"></div>
       <div class="pad" id="sPad"></div>
       <p class="tip" id="sTip"></p>
-      <div class="mrow"><button class="btn" id="sHint"></button><button class="btn ghost" id="sNew">Sudoku novo</button></div>`;
+      <div class="mrow" style="justify-content:center"><button class="btn" id="sPen" aria-pressed="false">✏️ Lápis: desligado</button><button class="btn" id="sHint"></button><button class="btn ghost" id="sNew">Sudoku novo</button></div>`;
     $('#sErr').checked=S.err;
     $('#sSize').onclick=e=>{const b=e.target.closest('[data-n]');if(b){S.n=+b.dataset.n;newSud()}};
+    $('#sLv').onclick=e=>{const b=e.target.closest('[data-lv]');if(b){S.lv=b.dataset.lv;newSud()}};
+    $('#sPen').onclick=()=>{S.pen=!S.pen;renderS()};
     $('#sSym').onclick=e=>{const b=e.target.closest('[data-s]');if(b){S.sym=b.dataset.s;renderS()}};
     $('#sErr').onchange=e=>{S.err=e.target.checked;renderS()};
     $('#sGrid').onclick=e=>{const c=e.target.closest('[data-i]');if(c&&!S.won){S.sel=+c.dataset.i;renderS()}};
@@ -1370,35 +1381,49 @@ const PENSAR=(()=>{
     $('#sHint').onclick=hint;$('#sNew').onclick=newSud;
     newSud();
   }
-  function put(v){if(S.won||S.sel==null||S.sel<0||S.giv[S.sel])return;S.cur[S.sel]=v;checkWin();renderS()}
+  function put(v){
+    const i=S.sel;if(S.won||i==null||i<0||S.giv[i])return;
+    if(S.pen&&v&&!S.cur[i]){const s=S.notes[i];s.has(v)?s.delete(v):s.add(v);renderS();return}
+    S.cur[i]=v;
+    if(!v){if(!S.pen||!S.notes[i].size){} S.notes[i].clear()}
+    else{S.notes[i].clear();const pe=peers(i);S.notes.forEach((s,j)=>{if(j!==i&&pe(j))s.delete(v)})}
+    checkWin();renderS();
+  }
   function hint(){
     if(S.won||!S.hints)return;
     let i=S.sel;if(i==null||i<0||S.giv[i]||S.cur[i]===S.sol[i]){const opts=S.cur.map((v,k)=>v!==S.sol[k]?k:-1).filter(k=>k>=0);if(!opts.length)return;i=opts[Math.random()*opts.length|0]}
-    S.cur[i]=S.sol[i];S.giv[i]=true;S.sel=i;S.hints--;checkWin();renderS();
+    S.cur[i]=S.sol[i];S.giv[i]=true;S.notes[i].clear();S.sel=i;S.hints--;checkWin();renderS();
   }
   function checkWin(){if(S.cur.every((v,i)=>v===S.sol[i])){S.won=true;note('sudoku')}}
   function renderS(){
     const n=S.n,c=S.cfg,g=$('#sGrid');if(!g)return;
     $$('#sSize button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.n===n));
     $$('#sSym button').forEach(b=>{b.setAttribute('aria-pressed',b.dataset.s===S.sym);b.disabled=n===9&&b.dataset.s==='ani'});
+    $('#sLvRow').hidden=n!==9;
+    $$('#sLv button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lv===S.lv));
+    $('#sPen').setAttribute('aria-pressed',S.pen);$('#sPen').textContent=`✏️ Lápis: ${S.pen?'ligado':'desligado'}`;
     g.style.setProperty('--n',n);g.style.setProperty('--w',c.w);g.style.setProperty('--fs',c.fs);
     g.classList.toggle('won',S.won);
     const pe=S.sel>=0?peers(S.sel):()=>false,sv=S.sel>=0?S.cur[S.sel]:0;
     g.innerHTML=S.cur.map((v,i)=>{const r=i/n|0,col=i%n;const cls=[S.giv[i]?'g':'',(col+1)%c.bc===0&&col<n-1?'br':'',(r+1)%c.br===0&&r<n-1?'bb':'',col===n-1?'lc':'',r===n-1?'lr':'',
       i===S.sel?'sel':v&&v===sv?'same':pe(i)?'peer':'',S.err&&isBad(i)&&!S.giv[i]?'bad':''].join(' ');
-      return `<button data-i="${i}" class="${cls}" aria-label="Linha ${r+1}, coluna ${col+1}${v?': '+v:''}">${sym(v)}</button>`}).join('');
+      const nt=!v&&S.notes[i].size?`<span class="nts" style="grid-template-columns:repeat(${c.bc},1fr)">${[...Array(n)].map((_,k)=>`<i>${S.notes[i].has(k+1)?sym(k+1):''}</i>`).join('')}</span>`:sym(v);
+      return `<button data-i="${i}" class="${cls}" aria-label="Linha ${r+1}, coluna ${col+1}${v?': '+v:''}">${nt}</button>`}).join('');
     $('#sPad').innerHTML=[...Array(n)].map((_,k)=>`<button class="cap" data-v="${k+1}">${sym(k+1)}</button>`).join('')+`<button class="cap sm" data-v="0">Apagar</button>`;
     $('#sHint').textContent=`Dar uma ajuda (${S.hints})`;$('#sHint').disabled=!S.hints||S.won;
     const what=S.sym==='ani'&&n<=6?'animal':'número';
-    $('#sStat').textContent=S.won?'Sudoku resolvido! 🎉':'';
-    $('#sTip').innerHTML=S.won?'Usaste lógica pura: nenhum '+what+' se repete em nenhuma linha, coluna ou caixa. Que tal ensinar as regras a alguém?'
-      :`Cada linha, cada coluna e cada caixa de borda grossa tem de ter todos os ${what}s, sem repetir. Clica numa casa vazia e escolhe em baixo${n<=9?`, ou carrega nas teclas <kbd>1</kbd> a <kbd>${n}</kbd>`:''}.`;
+    const lvName=n===9?` · nível ${LV[S.lv].l}`:'';
+    $('#sStat').textContent=S.won?`Sudoku resolvido${lvName}! 🎉`:'';
+    const penTip=' No modo <b>lápis</b>, os números ficam pequeninos: servem para apontar as hipóteses de cada casa. Tecla <kbd>L</kbd> liga e desliga.';
+    $('#sTip').innerHTML=S.won?'Usaste lógica pura: nenhum '+what+' se repete em nenhuma linha, coluna ou caixa.'+(n===9&&S.lv!=='mestre'?' Pronto para o nível seguinte?':' Que tal ensinar as regras a alguém?')
+      :`Cada linha, cada coluna e cada caixa de borda grossa tem de ter todos os ${what}s, sem repetir. Clica numa casa vazia e escolhe em baixo, ou carrega nas teclas <kbd>1</kbd> a <kbd>${n}</kbd>.`+(n===9?penTip:'');
   }
   function sudKey(e){
     if(tab!=='sudoku'||S.won||e.ctrlKey||e.metaKey||e.altKey)return;
     const n=S.n;
     if(/^[1-9]$/.test(e.key)&&+e.key<=n){e.preventDefault();put(+e.key)}
     else if(['Backspace','Delete','0'].includes(e.key)){e.preventDefault();put(0)}
+    else if(e.key.toLowerCase()==='l'){e.preventDefault();S.pen=!S.pen;renderS()}
     else if(e.key.startsWith('Arrow')){e.preventDefault();let i=S.sel<0?0:S.sel,r=i/n|0,c=i%n;
       if(e.key==='ArrowUp')r=(r+n-1)%n;if(e.key==='ArrowDown')r=(r+1)%n;if(e.key==='ArrowLeft')c=(c+n-1)%n;if(e.key==='ArrowRight')c=(c+1)%n;S.sel=r*n+c;renderS()}
   }
