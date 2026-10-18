@@ -1045,8 +1045,9 @@ const RATO=(()=>{
         const sx=e.clientX,sy=e.clientY;el.classList.add('drag');let hot=null;
         const zoneAt=(x,y)=>{const t=document.elementFromPoint(x,y);return t&&t.closest('.zone')};
         const mv=ev=>{el.style.transform=`translate(${ev.clientX-sx}px,${ev.clientY-sy}px)`;const z=zoneAt(ev.clientX,ev.clientY);if(z!==hot){hot&&hot.classList.remove('hot');hot=z;hot&&hot.classList.add('hot')}};
-        const up=ev=>{el.removeEventListener('pointermove',mv);el.removeEventListener('pointerup',up);el.removeEventListener('pointercancel',up);el.classList.remove('drag');hot&&hot.classList.remove('hot');
-          const z=zoneAt(ev.clientX,ev.clientY);
+        const up=ev=>{el.removeEventListener('pointermove',mv);el.removeEventListener('pointerup',up);el.removeEventListener('pointercancel',up);
+          const z=ev.type==='pointercancel'?null:(zoneAt(ev.clientX,ev.clientY)||hot); // procurar a pasta antes de o ficheiro voltar a "tapar" o rato
+          el.classList.remove('drag');hot&&hot.classList.remove('hot');
           if(z&&z.dataset.z===el.dataset.k){$('.got',z).insertAdjacentHTML('beforeend',`<span>${esc(el.dataset.n)}</span>`);el.remove();st.left--;$('.ainfo span:last-child',A).innerHTML=`<b>${6-st.left}</b> / 6`;
             if(!st.left)setTimeout(()=>doneBox('Tudo arrumado!','Arrastar serve para mudar ficheiros de pasta. E aprendeste que o fim do nome (.png, .mp3, .txt) diz que tipo de ficheiro é.'),400)}
           else{el.style.transition='transform .3s';el.style.transform='';setTimeout(()=>el.style.transition='',320);if(z){const zz=zones.find(q=>q[0]===el.dataset.k);msg(`Essa não é a pasta certa. ${zz[2]}.`)}else if(Math.abs(ev.clientX-sx)<5&&Math.abs(ev.clientY-sy)<5)msg('Carrega e NÃO largues o botão enquanto mexes o rato.')}};
